@@ -1,4 +1,4 @@
 class Question < ActiveRecord::Base
-  # Association
+  # Associations
   has_many :answers
 end
