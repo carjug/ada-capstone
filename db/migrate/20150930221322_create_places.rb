@@ -6,5 +6,7 @@ class CreatePlaces < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    create_join_table :places, :categories
   end
 end
