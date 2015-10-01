@@ -5,7 +5,7 @@ class SlcSpider(scrapy.Spider):
     name = "slc"
     allowed_domains = ["visitsaltlake.com/"]
     start_urls = [
-        "http://www.visitsaltlake.com/things-to-do/attractions/?listsearch_submit=1&listingGetAll=0&subcatID=1790&regionID=0&listing_keyword=Keywords...&submit=#searchBr"
+        "http://www.visitsaltlake.com/things-to-do/attractions/?listsearch_submit=1&listingGetAll=0&subcatID=1740&regionID=0&listing_keyword=Keywords...&submit=#searchBr"
     ]
 
     def parse(self, response):
