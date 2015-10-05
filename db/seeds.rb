@@ -1,15 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# country = Country.create({name: 'United States'})
-
-# prov = Prov.create({name: 'Utah'})
-
-# city = City.create({name: 'Salt Lake City'})
 JSON.parse(open("#{Rails.root}/countries.json").read).each do |stuff|
     country = Country.new()
     country.name = stuff['name']
