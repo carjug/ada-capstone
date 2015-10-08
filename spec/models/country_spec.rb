@@ -21,7 +21,6 @@ RSpec.describe Country, type: :model do
 
       expect(country.provs.count).to eq 1
       expect(country.provs[0].name).to eq "A Prov"
-
     end
 
     it "needs a name" do
@@ -37,7 +36,6 @@ RSpec.describe Country, type: :model do
 
       expect(country.cities.count).to eq 1
       expect(country.cities[0].name).to eq "A City"
-
     end
   end
 end

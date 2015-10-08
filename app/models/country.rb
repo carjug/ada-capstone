@@ -3,5 +3,6 @@ class Country < ActiveRecord::Base
   has_many :provs
   has_many :cities, :through => :provs
 
+  # Validations
   validates :name, presence: true
 end
