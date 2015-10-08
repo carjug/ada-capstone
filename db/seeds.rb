@@ -31,3 +31,10 @@ JSON.parse(open("#{Rails.root}/city_data/slc.json").read).each do |stuff|
     place.save!
   end
 end
+
+JSON.parse(open("#{Rails.root}/categories.json").read).each do |stuff|
+  category = Category.new()
+  category.category = stuff['category']
+end
+
+
