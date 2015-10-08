@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :country do
     id 10
     name "A Country"
@@ -18,6 +17,7 @@ FactoryGirl.define do
   end
 
   factory :place do
+    id 3
     name "A Place"
     city_id 1
   end
