@@ -24,8 +24,15 @@ RSpec.describe City, type: :model do
       expect(city).to_not be_valid
     end
 
-    it "is associated with a prov_id" do
+    it "needs a prov_id" do
       city.prov_id = ""
+
+      expect(city).to_not be_valid
+    end
+
+    it "is associated with a prov_id" do
+      prov.save
+      city.save
 
       expect(city).to_not be_valid
     end
