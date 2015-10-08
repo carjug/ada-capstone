@@ -7,5 +7,8 @@ class Place < ActiveRecord::Base
   validates :name, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
+  validates :categories, presence: true,
+            length: { minimum: 3 }
+
 
 end
