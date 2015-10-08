@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let(:city)      { build(:city) }
   let(:place)     { build(:place) }
+  let(:place1)    { build(:place1) }
   let(:category1) { create(:category1) }
   let(:category2) { create(:category2) }
   let(:category3) { create(:category3) }
 
   before do
     @categories = [category1, category2, category3]
+    @places     = [place, place1]
   end
 
   context "when creating a category" do
@@ -26,28 +28,20 @@ RSpec.describe Category, type: :model do
       expect(category1).to_not be_valid
     end
 
-    # it "needs to be associated with a city_id" do
-    #   category.city_id = ""
+    it "has a places attribute" do
+      expect(category1.places).to eq []
+    end
 
-    #   expect(category).to_not be_valid
-    # end
+    it "has associated places" do
+      @categories.each do |word|
+        place.categories.push(word)
+        place1.categories.push(word)
+      end
+      place.save
+      place1.save
 
-    # it "has a categories attribute" do
-    #   expect(category.categories).to eq []
-    # end
-
-    # it "has at least 3 associated categories" do
-    #   category.categories = Category.where(category: "cool")
-    #   expect(category).to_not be_valid
-    # end
-
-    # it "has associated categories" do
-    #   @categories.each do |word|
-    #     category.categories.push(word)
-    #   end
-
-    #   expect(category).to be_valid
-    #   expect(category.categories[0].category).to eq "cool"
-    # end
+      expect(category1.places.count).to eq 2
+      expect(category1.places[0].name).to eq "A Place"
+    end
   end
 end

@@ -46,6 +46,12 @@ FactoryGirl.define do
     city_id 1
   end
 
+  factory :place1, class: Place do
+    id 4
+    name "Another Place"
+    city_id 1
+  end
+
   factory :category1, class: Category do
     category "cool"
   end
