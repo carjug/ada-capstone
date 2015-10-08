@@ -1,5 +1,16 @@
 FactoryGirl.define do
 
+  factory :answer do
+    id 6
+    answer "An answer"
+    question_id 3
+  end
+
+  factory :question do
+    id 3
+    question "A Question?"
+  end
+
   factory :culture do
     id 3
     title "A Culture"

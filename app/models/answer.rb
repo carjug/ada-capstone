@@ -1,5 +1,9 @@
 class Answer < ActiveRecord::Base
   # Associations
   belongs_to :question
-  belongs_to :culture
+
+  # Validations
+  validates :answer, presence: true
+  validates :question_id, presence: true,
+            numericality: { only_integer: true }
 end
