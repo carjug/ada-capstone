@@ -20,6 +20,8 @@ FactoryGirl.define do
   factory :user do
     id 1
     username "A User"
+    password "sjkslhjshj"
+    password_confirmation "sjkslhjshj"
     culture_id 3
   end
 
