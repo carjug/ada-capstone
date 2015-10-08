@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Place, type: :model do
-    let(:city)      { build(:city) }
-    let(:place)     { build(:place) }
-    let(:category1) { create(:category1) }
-    let(:category2) { create(:category2) }
-    let(:category3) { create(:category3) }
+  let(:city)      { build(:city) }
+  let(:place)     { build(:place) }
+  let(:category1) { create(:category1) }
+  let(:category2) { create(:category2) }
+  let(:category3) { create(:category3) }
 
   before do
     @categories = [category1, category2, category3]
@@ -30,7 +30,7 @@ RSpec.describe Place, type: :model do
       expect(place).to_not be_valid
     end
 
-    it "is associated with a city_id" do
+    it "needs to be associated with a city_id" do
       place.city_id = ""
 
       expect(place).to_not be_valid
