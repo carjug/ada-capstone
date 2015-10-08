@@ -1,8 +1,20 @@
 FactoryGirl.define do
 
+  factory :country do
+    id 10
+    name "A Country"
+  end
+
+  factory :prov do
+    id 5
+    name "A Prov"
+    country_id 10
+  end
+
   factory :city do
     id 1
     name "A City"
+    prov_id 5
   end
 
   factory :place do

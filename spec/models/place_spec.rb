@@ -7,7 +7,7 @@ RSpec.describe Place, type: :model do
     let(:category2) { create(:category2) }
     let(:category3) { create(:category3) }
 
-  before :each do
+  before do
     @categories = [category1, category2, category3]
   end
 
