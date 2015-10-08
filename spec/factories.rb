@@ -9,4 +9,16 @@ FactoryGirl.define do
     name "A Place"
     city_id 1
   end
+
+  factory :category1, class: Category do
+    category "cool"
+  end
+
+  factory :category2, class: Category do
+    category "chill"
+  end
+
+  factory :category3, class: Category do
+    category "serene"
+  end
 end

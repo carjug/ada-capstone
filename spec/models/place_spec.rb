@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Place, type: :model do
-    let(:city)  { build(:city) }
-    let(:place) { build(:place) }
+    let(:city)      { build(:city) }
+    let(:place)     { build(:place) }
+    let(:category1) { create(:category1) }
+    let(:category2) { create(:category2) }
+    let(:category3) { create(:category3) }
 
-  before do
-    @categories = ["cool", "chill", "serene"]
-    @categories.each do |category|
-      Category.create(category: category)
-    end
+  before :each do
+    @categories = [category1, category2, category3]
   end
 
   context "when creating a place" do
@@ -47,8 +47,7 @@ RSpec.describe Place, type: :model do
 
     it "has associated categories" do
       @categories.each do |word|
-        x = Category.find_by(category: word)
-        place.categories.push(x)
+        place.categories.push(word)
       end
 
       expect(place).to be_valid
