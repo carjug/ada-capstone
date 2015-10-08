@@ -1,4 +1,19 @@
 FactoryGirl.define do
+
+  factory :culture do
+    id 3
+    title "A Culture"
+    description "A description"
+  end
+
+  factory :user do
+    id 1
+    username "A User"
+    password "hihello798"
+    password_confirmation "hihello798"
+    culture_id 3
+  end
+
   factory :country do
     id 10
     name "A Country"

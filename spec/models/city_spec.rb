@@ -34,7 +34,7 @@ RSpec.describe City, type: :model do
       prov.save
       city.save
 
-      expect(city).to_not be_valid
+      expect(city.prov_id).to eq prov.id
     end
   end
 end
