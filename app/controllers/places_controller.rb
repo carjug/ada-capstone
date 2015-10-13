@@ -15,7 +15,7 @@ class PlacesController < ApplicationController
 
     place.update(name: params[:name])
 
-    categories_update(place) # method call
+    categories_update(place) # method call to associate categories
 
     if place.save
       render json: place.as_json, status: 200

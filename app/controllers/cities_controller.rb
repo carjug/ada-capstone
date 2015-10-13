@@ -15,7 +15,7 @@ class CitiesController < ApplicationController
 
     city.update(name: params[:name])
 
-    places_update(city) # method call
+    places_update(city) # method call to associate places
 
     if city.save
       render json: city.as_json, status: 200
