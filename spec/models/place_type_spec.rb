@@ -8,7 +8,6 @@ RSpec.describe PlaceType, type: :model do
   let(:category3)  { create(:category3) }
   let(:place_type) { build(:place_type) }
 
-
   before :each do
     @categories = [category1, category2, category3]
     @categories.each do |cat|
