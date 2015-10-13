@@ -30,7 +30,7 @@ RSpec.describe PlacesController, type: :controller do
     end
   end
 
-  describe "PUT" do
+  describe "PUT update" do
     it "updates a place" do
       city.save!
       place.save!
