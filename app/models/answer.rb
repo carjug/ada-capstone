@@ -7,3 +7,4 @@ class Answer < ActiveRecord::Base
   validates :question_id, presence: true,
             numericality: { only_integer: true }
 end
+
