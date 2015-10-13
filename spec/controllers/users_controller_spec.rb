@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-
   let(:user) { build(:user) }
 
   describe "POST register" do
