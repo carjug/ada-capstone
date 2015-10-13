@@ -4,6 +4,6 @@ class Rating < ActiveRecord::Base
   belongs_to :place
 
   # Validations
-
-  validates_presence_of :overall, :rating1, :rating2, :rating3, :user_id, :place_id
+  validates_presence_of :overall, :rating1, :rating2,
+                        :rating3, :user_id, :place_id
 end

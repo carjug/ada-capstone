@@ -13,5 +13,4 @@ class Place < ActiveRecord::Base
   validates :categories, presence: true,
             length: { minimum: 3 }
 
-
 end

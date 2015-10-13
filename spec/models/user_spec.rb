@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:culture) { build(:culture) }
   let(:user)    { build(:user) }
+  let(:rating)  { build(:rating) }
 
   context "when creating a user" do
     it "behaves like an object" do
@@ -23,6 +24,13 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
 
+    it "has a ratings association" do
+      user.save!
+      rating.save!
+
+      expect(user.ratings.count).to eq 1
+    end
+
     # it "needs a culture_id" do
     #   user.culture_id = ""
 
@@ -35,5 +43,6 @@ RSpec.describe User, type: :model do
 
     #   expect(user.culture_id).to eq culture.id
     # end
+
   end
 end
