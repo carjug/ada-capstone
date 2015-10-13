@@ -11,6 +11,9 @@ RSpec.describe PlaceType, type: :model do
 
   before :each do
     @categories = [category1, category2, category3]
+    @categories.each do |cat|
+      place.categories << cat
+    end
   end
 
   describe "place type" do
@@ -24,6 +27,13 @@ RSpec.describe PlaceType, type: :model do
 
     it "has axis attributes" do
       expect(place_type.axis1).to eq "Ambience"
+    end
+
+    it "has associated places" do
+      place_type.save!
+      place.save!
+      expect(place_type.places.count).to eq 1
+      expect(place_type.places[0].name).to eq "A Place"
     end
   end
 end
