@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   let(:user) { build(:user) }
+
   # POST /login
   describe "login" do
     it "returns success" do
