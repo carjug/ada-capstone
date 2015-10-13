@@ -30,13 +30,30 @@ RSpec.describe PlacesController, type: :controller do
     end
   end
 
+  describe "PUT" do
+    it "updates a place" do
+      city.save!
+      place.save!
+
+      put :update, {
+        id: place.id,
+        name: "A different name",
+        categories: [category1, category2]
+      }
+
+      expect(response.status).to eq 200
+      expect(response.header["Content-Type"]).to include "application/json"
+      expect(response.body).to include ( "A different name" )
+    end
+  end
+
   describe "GET find_by_city" do
     it "gets places in a city" do
       city.save!
       place.save!
 
       get :find_by_city, city: {
-        id: city.id
+        id: city.id,
       }
 
       expect(response.status).to eq 200

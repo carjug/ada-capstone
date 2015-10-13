@@ -23,17 +23,17 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
 
-    it "needs a culture_id" do
-      user.culture_id = ""
+    # it "needs a culture_id" do
+    #   user.culture_id = ""
 
-      expect(user).to_not be_valid
-    end
+    #   expect(user).to_not be_valid
+    # end
 
-    it "is associated with a culture_id" do
-      culture.save
-      user.save
+    # it "is associated with a culture_id" do
+    #   culture.save
+    #   user.save
 
-      expect(user.culture_id).to eq culture.id
-    end
+    #   expect(user.culture_id).to eq culture.id
+    # end
   end
 end

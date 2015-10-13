@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find(params[:user][:id])
+
     if user.authenticate(params[:user][:password]) != false
       session[:user_id] = user.id
       render json: { message: "Login successful" }, status: 200
