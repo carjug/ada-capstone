@@ -11,6 +11,7 @@ FactoryGirl.define do
 
   factory :place_type do
 
+
   end
 
   factory :answer do
