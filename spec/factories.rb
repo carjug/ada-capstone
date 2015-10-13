@@ -1,4 +1,18 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :rating do
+    overall 1
+rating1 1
+rating2 1
+rating3 1
+user_id 1
+place_id 1
+  end
+  factory :place_type do
+    type ""
+axis1 "MyString"
+axis2 "MyString"
+axis3 "MyString"
+  end
+
 
   factory :answer do
     id 6
