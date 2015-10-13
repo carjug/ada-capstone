@@ -7,8 +7,11 @@ RSpec.describe Place, type: :model do
   let(:category2) { create(:category2) }
   let(:category3) { create(:category3) }
 
-  before do
+  before :each do
     @categories = [category1, category2, category3]
+    @categories.each do |word|
+        place.categories.push(word)
+    end
   end
 
   context "when creating a place" do
@@ -37,7 +40,9 @@ RSpec.describe Place, type: :model do
     end
 
     it "has a categories attribute" do
-      expect(place.categories).to eq []
+      place.save!
+
+      expect(place.categories.count).to eq 3
     end
 
     it "has at least 3 associated categories" do
@@ -46,12 +51,16 @@ RSpec.describe Place, type: :model do
     end
 
     it "has associated categories" do
-      @categories.each do |word|
-        place.categories.push(word)
-      end
+      place.save!
 
       expect(place).to be_valid
       expect(place.categories[0].category).to eq "cool"
+    end
+
+    it "needs to have a place_type association" do
+      place.place_type_id = nil
+
+      expect(place).to_not be_valid
     end
   end
 end
