@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
     if city.save
       render json: city.as_json, status: 200
     else
-      render json: { message: "City could not be saved" }
+      render json: { message: "City could not be saved" }, status: 401
     end
   end
 

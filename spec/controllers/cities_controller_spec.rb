@@ -34,6 +34,21 @@ RSpec.describe CitiesController, type: :controller do
       expect(response.header["Content-Type"]).to include "application/json"
       expect(city.places.count).to eq 1
     end
+
+    it "does not create a city if no name provided" do
+      prov.save!
+      place.save!
+
+      post :create, city: {
+        id: city.id,
+        name: "",
+        prov_id: prov.id,
+        places: [place]
+      }
+
+      expect(response.status).to eq 401
+      expect(response.header["Content-Type"]).to include "application/json"
+    end
   end
 
   describe "PUT update" do
@@ -53,6 +68,22 @@ RSpec.describe CitiesController, type: :controller do
       expect(response.header["Content-Type"]).to include "application/json"
       expect(response.body).to include ( "A different city" )
       expect(city.places.count).to eq 2
+    end
+
+    it "does not update a city without a name" do
+      prov.save!
+      city.save!
+      place.save!
+      place1.save!
+
+      put :update, {
+        id: city.id,
+        name: "",
+        places: [place, place1]
+      }
+
+      expect(response.status).to eq 401
+      expect(response.header["Content-Type"]).to include "application/json"
     end
   end
 
