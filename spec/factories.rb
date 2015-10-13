@@ -1,18 +1,21 @@
-FactoryGirl.define do  factory :rating do
-    overall 1
-rating1 1
-rating2 1
-rating3 1
-user_id 1
-place_id 1
-  end
-  factory :place_type do
-    type ""
-axis1 "MyString"
-axis2 "MyString"
-axis3 "MyString"
+FactoryGirl.define do
+
+  factory :rating do
+    overall 5
+    rating1 4
+    rating2 5
+    rating3 5
+    user_id 1
+    place_id 4
   end
 
+  factory :place_type do
+    id 1
+    type "Food and Drink"
+    axis1 "Ambience"
+    axis2 "Food/Drink Quality"
+    axis3 "Service"
+  end
 
   factory :answer do
     id 6
@@ -60,12 +63,14 @@ axis3 "MyString"
     id 3
     name "A Place"
     city_id 1
+    place_type_id 1
   end
 
   factory :place1, class: Place do
     id 4
     name "Another Place"
     city_id 1
+    place_type_id 1
   end
 
   factory :category1, class: Category do
