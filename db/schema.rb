@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008165800) do
+ActiveRecord::Schema.define(version: 20151013221618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20151008165800) do
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "axes", force: :cascade do |t|
+    t.string   "axis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "axes_place_types", id: false, force: :cascade do |t|
+    t.integer "axis_id",       null: false
+    t.integer "place_type_id", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -55,6 +66,12 @@ ActiveRecord::Schema.define(version: 20151008165800) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "place_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.integer  "city_id"
@@ -72,6 +89,11 @@ ActiveRecord::Schema.define(version: 20151008165800) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

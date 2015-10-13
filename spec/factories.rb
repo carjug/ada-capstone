@@ -1,5 +1,18 @@
 FactoryGirl.define do
 
+  factory :rating do
+
+  end
+
+
+  factory :axis do
+
+  end
+
+  factory :place_type do
+
+  end
+
   factory :answer do
     id 6
     answer "An answer"
