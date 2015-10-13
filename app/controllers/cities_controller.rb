@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
     if city.save
       render json: city.as_json, status: 200
     else
-      render json: { message: "City could not be saved" }, status: 401
+      render json: { message: "City could not be saved" }, status: 404
     end
   end
 
@@ -20,7 +20,7 @@ class CitiesController < ApplicationController
     if city.save
       render json: city.as_json, status: 200
     else
-      render json: { message: "Place updates could not be saved" }, status: 401
+      render json: { message: "Place updates could not be saved" }, status: 404
     end
   end
 

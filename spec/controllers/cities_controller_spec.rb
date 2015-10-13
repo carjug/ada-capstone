@@ -46,7 +46,7 @@ RSpec.describe CitiesController, type: :controller do
         places: [place]
       }
 
-      expect(response.status).to eq 401
+      expect(response.status).to eq 404
       expect(response.header["Content-Type"]).to include "application/json"
     end
   end
@@ -82,7 +82,7 @@ RSpec.describe CitiesController, type: :controller do
         places: [place, place1]
       }
 
-      expect(response.status).to eq 401
+      expect(response.status).to eq 404
       expect(response.header["Content-Type"]).to include "application/json"
     end
   end

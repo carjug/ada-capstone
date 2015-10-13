@@ -27,8 +27,11 @@ class PlacesController < ApplicationController
 # This does not yet consider a person's preferences
   def find_by_city
     places = Place.where(city_id: params[:id])
-
-    render json: places.as_json, status: 200
+    if places != nil
+      render json: places.as_json, status: 200
+    else
+      render json: { error: "No places were returned for the given city" }, status: 404
+    end
   end
 
   private
