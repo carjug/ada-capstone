@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :username, presence: true
-  validates :culture_id, presence: true,
-            numericality: { only_integer: true }
+  validates :username, uniqueness: true, on: :create
+  # validates :culture_id, presence: true,
+  #           numericality: { only_integer: true }
 end
