@@ -24,6 +24,7 @@ RSpec.describe PlacesController, type: :controller do
       }
 
       expect(response.status).to eq 200
+      expect(response.header["Content-Type"]).to include "application/json"
     end
   end
 end
