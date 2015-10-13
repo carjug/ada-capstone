@@ -21,5 +21,9 @@ RSpec.describe PlaceType, type: :model do
     it "has a type attribute" do
       expect(place_type.type).to eq "Food and Drink"
     end
+
+    it "has axis attributes" do
+      expect(place_type.axis1).to eq "Ambience"
+    end
   end
 end
