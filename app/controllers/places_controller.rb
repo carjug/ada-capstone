@@ -39,20 +39,17 @@ class PlacesController < ApplicationController
     city = city.name
 
     response = call_google(city) # method call
-    binding.pry
-
-    data = JSON.parse(response.body)
-
-    create_places(data["results"]) # method call
-
-
+    # raise
+    create_places(response) # method call
+    # raise
+    # binding.pry
     # places = Place.where(city_id: params[:id])
 
-    if response != nil
-      render json: response.as_json, status: 200
-    else
-      render json: { error: "No places were returned for the given city" }, status: 404
-    end
+    # if response != nil
+    #   render json: response.as_json, status: 200
+    # else
+    #   render json: { error: "No places were returned for the given city" }, status: 404
+    # end
   end
 
   private
@@ -74,20 +71,30 @@ class PlacesController < ApplicationController
   def call_google(city)
     response_array = []
     response1 = HTTParty.get(NEARBY_API_URI + "location=" + SALT_LAKE + "&radius=10000" + "&rankby=prominence" + "&types=amusement_park|aquarium|art_gallery|bakery|bar|beauty_salon|book_store|bowling_alley|cafe|campground|cemetery|city_hall|clothing_store|department_store|florist|food|furniture_store|grocery_or_supermarket|gym|hindu_temple|home_goods_store|jewelry_store|library|liquor_store|mosque|movie_theater|museum|night_club|park|place_of_worship|restaurant|shoe_store|shopping_mall|spa|stadium|university|zoo" + "&key=" + KEY)
-
     response_array.push(response1)
 
     if response1["next_page_token"] != nil
       page_token = response1["next_page_token"]
       response2 = HTTParty.get(NEARBY_API_URI + "pagetoken=" + page_token + "&key=" + KEY)
-      response_array.push(response2)
+
+      if response2["status"] == "INVALID_REQUEST"
+        response3 = HTTParty.get(NEARBY_API_URI + "pagetoken=" + page_token + "&key=" + KEY)
+      else
+        response_array.push(response2)
+        response_array.push(response3)
+      end
     end
     return response_array
   end
 
-  def create_places(data)
-    data.each do |place|
+  def create_places(response)
+    data = response[0].body
+    data = JSON.parse(data)
+    name_count = 0
+    data["results"].each do |place|
       print place["name"]
+      name_count += 1
     end
+    print("NAME COUNT = ", name_count) # for testing
   end
 end
