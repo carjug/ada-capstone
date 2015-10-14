@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
 
   NEARBY_API_URI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
-  SALT_LAKE = "40.7500 N, 111.8833 W"
+  SALT_LAKE = "40.758701, -111.876183"
 
   KEY = ENV["GOOGLE_KEY"]
 
@@ -38,8 +38,13 @@ class PlacesController < ApplicationController
     city = City.find(params[:city].to_i)
     city = city.name
 
+    response = call_google(city) # method call
+    binding.pry
 
-    response = call_google(city) #method call
+    data = JSON.parse(response.body)
+
+    create_places(data["results"]) # method call
+
 
     # places = Place.where(city_id: params[:id])
 
@@ -67,6 +72,22 @@ class PlacesController < ApplicationController
   end
 
   def call_google(city)
-    response = HTTParty.get(NEARBY_API_URI + "location=" + SALT_LAKE + "&radius=2500" + "&types=amusement_park|aquarium|art_gallery|bakery|bar|beauty_salon|book_store|bowling_alley|cafe|campground|cemetery|city_hall|clothing_store|department_store|florist|food|furniture_store|grocery_or_supermarket|gym|hindu_temple|home_goods_store|jewelry_store|library|liquor_store|mosque|movie_theater|museum|night_club|park|place_of_worship|restaurant|shoe_store|shopping_mall|spa|stadium|university|zoo" + "&key=" + KEY)
+    response_array = []
+    response1 = HTTParty.get(NEARBY_API_URI + "location=" + SALT_LAKE + "&radius=10000" + "&rankby=prominence" + "&types=amusement_park|aquarium|art_gallery|bakery|bar|beauty_salon|book_store|bowling_alley|cafe|campground|cemetery|city_hall|clothing_store|department_store|florist|food|furniture_store|grocery_or_supermarket|gym|hindu_temple|home_goods_store|jewelry_store|library|liquor_store|mosque|movie_theater|museum|night_club|park|place_of_worship|restaurant|shoe_store|shopping_mall|spa|stadium|university|zoo" + "&key=" + KEY)
+
+    response_array.push(response1)
+
+    if response1["next_page_token"] != nil
+      page_token = response1["next_page_token"]
+      response2 = HTTParty.get(NEARBY_API_URI + "pagetoken=" + page_token + "&key=" + KEY)
+      response_array.push(response2)
+    end
+    return response_array
+  end
+
+  def create_places(data)
+    data.each do |place|
+      print place["name"]
+    end
   end
 end
