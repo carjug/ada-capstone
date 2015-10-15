@@ -34,22 +34,20 @@ class PlacesController < ApplicationController
   end
 
 # This does not yet consider a person's preferences
+
   def find_by_city
-    city = City.find(params[:city].to_i)
-    city = city.name
+    # city = City.find(params[:city].to_i)
+    # city = city.name
 
-    response = call_google(city) # method call
-    # raise
-    create_places(response) # method call
-    # raise
-    # binding.pry
-    # places = Place.where(city_id: params[:id])
+    # response = call_google(city) # method call
+    # create_places(response) # method call
 
-    # if response != nil
-    #   render json: response.as_json, status: 200
-    # else
-    #   render json: { error: "No places were returned for the given city" }, status: 404
-    # end
+    places = Place.where(city_id: params[:city])
+    places = format_data(places)
+
+    places.empty? ? status = :no_content : status = :ok
+
+    render json: places.as_json, status: status
   end
 
   private
@@ -67,6 +65,33 @@ class PlacesController < ApplicationController
       end
     end
   end
+
+  def format_data(response)
+    city    = City.find(response[0].city_id)
+    prov    = Prov.find(city.prov_id)
+    country = Country.find(prov.country_id)
+
+    response.map do |place|
+      {
+        name: place.name,
+        place_type: place.place_type_id || "",
+        city: {
+          name: city.name
+        },
+        prov: {
+          name: prov.name,
+          abbreviation: prov.abbreviation
+        },
+        country: {
+          name: country.name,
+          code: country.code
+        }
+      }
+    end
+  end
+
+  # Below are currently useless methods
+
 
   def call_google(city)
     response_array = []

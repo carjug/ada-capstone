@@ -7,10 +7,10 @@ class Place < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
-  validates :place_type_id, presence: true
+  # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
-  validates :categories, presence: true,
-            length: { minimum: 3 }
+  # validates :categories, presence: true,
+  #           length: { minimum: 3 }
 
 end

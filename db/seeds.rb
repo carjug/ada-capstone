@@ -23,7 +23,7 @@ end
 
 #Seeding database with Salt Lake City as the only city
 
-@city = City.create({
+@city = City.find_or_create_by({
   name: "Salt Lake City",
   prov_id: @prov.id
   })

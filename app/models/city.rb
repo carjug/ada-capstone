@@ -4,7 +4,8 @@ class City < ActiveRecord::Base
   belongs_to :prov
 
   # Validations
-  validates :name, presence: true
+  validates :name, presence: true,
+            uniqueness: true
   validates :prov_id, presence: true,
             numericality: { only_integer: true }
 
