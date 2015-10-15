@@ -4,6 +4,7 @@ RSpec.describe Place, type: :model do
   let(:city)      { build(:city) }
   let(:place)     { build(:place) }
   let(:place1)    { build(:place1) }
+  let(:user)      { build(:user) }
   let(:category1) { create(:category1) }
   let(:category2) { create(:category2) }
   let(:category3) { create(:category3) }
@@ -81,6 +82,18 @@ RSpec.describe Place, type: :model do
 
       expect(Place.top_places_per_city(city).count).to eq 2
       expect(Place.top_places_per_city(city)[1].name).to eq "A Place"
+    end
+
+    it "has a top_places_per_user scope" do
+      user.save!
+      city.save!
+      place1.save!
+      place.save!
+      rating.save!
+      rating1.save!
+
+      expect(Place.top_places_per_user(user).count).to eq 2
+      expect(Place.top_places_per_user(user)[1].name).to eq "A Place"
     end
 
     it "has access to top 3 most-assigned categories" do
