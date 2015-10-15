@@ -14,5 +14,9 @@ class User < ActiveRecord::Base
   #           numericality: { only_integer: true }
 
   # Methods
+  def self.culture
+    culture = Culture.find(self.culture_id)
+    culture.title
+  end
 
 end
