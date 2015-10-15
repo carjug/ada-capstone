@@ -11,7 +11,6 @@ RSpec.describe Place, type: :model do
   let(:rating)    { create(:rating) }
   let(:rating1)   { create(:rating1) }
 
-
   before :each do
     @categories = [category1, category2, category3]
     @categories.each do |word|
