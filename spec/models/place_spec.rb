@@ -3,14 +3,19 @@ require 'rails_helper'
 RSpec.describe Place, type: :model do
   let(:city)      { build(:city) }
   let(:place)     { build(:place) }
+  let(:place1)    { build(:place1) }
   let(:category1) { create(:category1) }
   let(:category2) { create(:category2) }
   let(:category3) { create(:category3) }
+  let(:rating)    { create(:rating) }
+  let(:rating1)   { create(:rating1) }
+
 
   before :each do
     @categories = [category1, category2, category3]
     @categories.each do |word|
         place.categories.push(word)
+        place1.categories.push(word)
     end
   end
 
@@ -57,10 +62,46 @@ RSpec.describe Place, type: :model do
       expect(place.categories[0].category).to eq "cool"
     end
 
-    it "needs to have a place_type association" do
-      place.place_type_id = nil
+    # Scope and model method tests
 
-      expect(place).to_not be_valid
+    it "has a top_places scope" do
+      place1.save!
+      rating.save!
+
+      expect(Place.top_places.count).to eq 1
+      expect(Place.top_places[0].name).to eq "Another Place"
     end
+
+    it "has a top_places_per_city scope" do
+      city.save!
+      place1.save!
+      place.save!
+      rating.save!
+      rating1.save!
+
+      expect(Place.top_places_per_city(city).count).to eq 2
+      expect(Place.top_places_per_city(city)[1].name).to eq "A Place"
+    end
+
+    it "has access to top 3 most-assigned categories" do
+      more_cats = [category1, category1, category2]
+
+      more_cats.each do |word|
+        place.categories.push(word)
+      end
+      place.save!
+
+      expect(place.top_categories_per_place).to eq (
+        [["cool", 3],
+        ["chill", 2],
+        ["serene", 1]]
+        )
+    end
+
+    # it "needs to have a place_type association" do
+    #   place.place_type_id = nil
+
+    #   expect(place).to_not be_valid
+    # end
   end
 end

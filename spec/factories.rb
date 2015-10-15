@@ -9,6 +9,15 @@ FactoryGirl.define do
     place_id 4
   end
 
+  factory :rating1, class: Rating do
+    overall 5
+    rating1 4
+    rating2 5
+    rating3 4
+    user_id 1
+    place_id 3
+  end
+
   factory :place_type do
     id 1
     type "Food and Drink"

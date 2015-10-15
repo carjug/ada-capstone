@@ -40,8 +40,10 @@ class Place < ActiveRecord::Base
         top_cats.store(name, 1)
       end
     end
+
     ary = top_cats.to_a
     ary.sort! { |x,y| y[1] <=> x[1] }
+
     return ary.take(3)
   end
 end
