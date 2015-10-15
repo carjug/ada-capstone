@@ -26,6 +26,8 @@ class Place < ActiveRecord::Base
     top_places.where('ratings.user_id = ?', user.id)
   }
 
+  scope :top_categories_per_place, -> {
+  }
 
   # Methods
 end

@@ -37,7 +37,10 @@ class PlacesController < ApplicationController
 
   def find_by_city
     # get user similarity index either to other users that have rated places in the city of interest
+    # ^ can be done with the concept of cultures
+
     # or find places with high similarity to user's highly rated places
+    # ^ how to do this is the question
     # or both!
 
     # city = City.find(params[:city].to_i)
