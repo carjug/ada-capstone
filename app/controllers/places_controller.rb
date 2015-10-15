@@ -33,22 +33,8 @@ class PlacesController < ApplicationController
     end
   end
 
-# This does not yet consider a person's preferences
 
   def find_by_city
-    # get user similarity index either to other users that have rated places in the city of interest
-    # ^ can be done with the concept of cultures
-
-    # or find places with high similarity to user's highly rated places
-    # ^ how to do this is the question
-    # or both!
-
-    # city = City.find(params[:city].to_i)
-    # city = city.name
-
-    # response = call_google(city) # method call
-    # create_places(response) # method call
-
     places = Place.where(city_id: params[:city])
 
     places = format_data(places) # method call
@@ -56,6 +42,17 @@ class PlacesController < ApplicationController
     places.empty? ? status = :no_content : status = :ok
 
     render json: places.as_json, status: status
+  end
+
+# This does not yet consider a person's preferences
+  def find_by_city_and_preferences
+    # get user similarity index either to other users that have rated places in the city of interest
+    # ^ can be done with the concept of cultures
+
+    # or find places with high similarity to user's highly rated places
+    # ^ how to do this is the question -- maybe using categories?!
+    # or both!
+
   end
 
   private
