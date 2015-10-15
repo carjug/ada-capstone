@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
   # Not sure where to put this in..
   # validates :culture_id, presence: true,
   #           numericality: { only_integer: true }
+
 end

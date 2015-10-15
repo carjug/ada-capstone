@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe PlacesController, type: :controller do
   let(:city)      { build(:city) }
   let(:place)     { build(:place) }
+  let(:prov)      { build(:prov) }
+  let(:country)   { build(:country) }
   let(:category1) { create(:category1) }
   let(:category2) { create(:category2) }
   let(:category3) { create(:category3) }
@@ -49,11 +51,13 @@ RSpec.describe PlacesController, type: :controller do
 
   describe "GET find_by_city" do
     it "gets places in a city" do
+      country.save!
+      prov.save!
       city.save!
       place.save!
 
-      get :find_by_city, city: {
-        id: city.id,
+      get :find_by_city, {
+        city: city.id,
       }
 
       expect(response.status).to eq 200

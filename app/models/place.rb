@@ -10,7 +10,22 @@ class Place < ActiveRecord::Base
   # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
-  # validates :categories, presence: true,
-  #           length: { minimum: 3 }
+  validates :categories, presence: true,
+            length: { minimum: 3 }
 
+  # Scopes
+  scope :top_places, -> {
+    joins(:ratings).where('ratings.overall >= ?', 4)
+  }
+
+  scope :top_places_per_city, -> (city) {
+    top_places.where('city_id = ?', city.id)
+  }
+
+  scope :top_places_per_user, -> (user) {
+    top_places.where('ratings.user_id = ?', user.id)
+  }
+
+
+  # Methods
 end
