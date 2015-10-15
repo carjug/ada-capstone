@@ -26,8 +26,19 @@ class Place < ActiveRecord::Base
     top_places.where('ratings.user_id = ?', user.id)
   }
 
-  scope :top_categories_per_place, -> {
-  }
 
   # Methods
+
+  def top_categories_per_place
+    top_cats = {}
+
+    self.categories.each do |cat|
+      name = cat.category
+      if top_cats.has_key?(name)
+        top_cats[name].value += 1
+      else
+        top_cats.store(name, 1)
+      end
+    end
+  end
 end
