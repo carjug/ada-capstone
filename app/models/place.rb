@@ -35,10 +35,13 @@ class Place < ActiveRecord::Base
     self.categories.each do |cat|
       name = cat.category
       if top_cats.has_key?(name)
-        top_cats[name].value += 1
+        top_cats[name] += 1
       else
         top_cats.store(name, 1)
       end
     end
+    ary = top_cats.to_a
+    ary.sort! { |x,y| y[1] <=> x[1] }
+    return ary.take(3)
   end
 end
