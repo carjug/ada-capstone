@@ -10,8 +10,8 @@ class Place < ActiveRecord::Base
   # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
-  # validates :categories, presence: true,
-  #           length: { minimum: 3 }
+  validates :categories, presence: true,
+            length: { minimum: 3 }
 
   # Scopes
   scope :top_places, -> {

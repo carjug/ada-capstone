@@ -24,19 +24,13 @@ end
 JSON.parse(open("#{Rails.root}/us_cities.json").read).each do |stuff|
   prov = Prov.find_by(abbreviation: stuff['state'])
   city = City.new(name: stuff["title"], prov_id: prov.id, lat_long: stuff["ll"])
-  # city.name = stuff['title'],
-  # city.lat_long = stuff['ll']
-  # city.prov_id = prov.id
-  # if city.name.include?("[")
-  #   binding.pry
-  # end
   city.save!
 end
 
-# Place seeds
 
 @city = City.find_by(name: "Salt Lake City")
 
+# Place seeds currently only for Salt Lake City
 JSON.parse(open("#{Rails.root}/city_data/slc.json").read).each do |stuff|
   existing_place = Place.find_by(name: stuff['place'])
   if existing_place == nil

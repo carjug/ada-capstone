@@ -4,11 +4,13 @@ class PlaceRecommender
     @collection = collection
   end
 
-  def user_based_recommendation
-
+  def place_recommendation
+    # the closer to 1 the more similar they are
+    Jaccard.coeffecient(@user, @collection)
   end
 
-  def place_based_recommendation
-
+  def user_recommendation
+    # the closer to 1 the more similar they are
+    Jaccard.coeffecient(@user, @collection)
   end
 end
