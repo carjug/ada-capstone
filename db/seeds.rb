@@ -10,7 +10,6 @@ end
 @country = Country.find_by(name: "United States")
 
 # Adds states of the US to the Provs table
-
 JSON.parse(open("#{Rails.root}/states.json").read).each do |stuff|
     state = Prov.new()
     state.name = stuff['name']
@@ -21,14 +20,22 @@ end
 
 @prov = Prov.find_by(name: "Utah")
 
-#Seeding database with Salt Lake City as the only city
-
-@city = City.find_or_create_by({
-  name: "Salt Lake City",
-  prov_id: @prov.id
-  })
+# Adds ~1000 major US cities as seeds
+JSON.parse(open("#{Rails.root}/us_cities.json").read).each do |stuff|
+  prov = Prov.find_by(abbreviation: stuff['state'])
+  city = City.new(name: stuff["title"], prov_id: prov.id, lat_long: stuff["ll"])
+  # city.name = stuff['title'],
+  # city.lat_long = stuff['ll']
+  # city.prov_id = prov.id
+  # if city.name.include?("[")
+  #   binding.pry
+  # end
+  city.save!
+end
 
 # Place seeds
+
+@city = City.find_by(name: "Salt Lake City")
 
 JSON.parse(open("#{Rails.root}/city_data/slc.json").read).each do |stuff|
   existing_place = Place.find_by(name: stuff['place'])
