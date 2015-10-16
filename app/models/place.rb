@@ -47,11 +47,15 @@ class Place < ActiveRecord::Base
     return ary.take(3)
   end
 
-  # def self.top_places_by_culture_and_city(city, culture_id)
-  #   places = self.top_places_per_city(city)
-  #   culture_places = places.map do |place|
-  #     if
+  def self.top_places_by_culture_and_city(city, culture_id)
+    returned_places = []
+    places = self.top_places_per_city(city)
 
-  # end
+    places.each do |place|
+      if place.culture_id == culture_id
+        returned_places << place
+      end
+    end
+  end
 
 end
