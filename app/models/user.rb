@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     where('culture.id = ?', culture_id)
   }
 
+  scope :ratings_by_culture, -> (culture_id) {
+    users_by_culture(culture_id).where('ratings.overall >= ?', 4)
+  }
+
   # Methods
   def self.culture
     culture = Culture.find(self.culture_id)
