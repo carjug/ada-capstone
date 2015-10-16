@@ -26,9 +26,6 @@ class Place < ActiveRecord::Base
     top_places.where('ratings.user_id = ?', user.id)
   }
 
-  # scope :best_places_by_culture_and_city, -> (culture_id, city) {
-  #   ratings_by_culture(culture_id).joins(:places).where('places.city_id = ?', city.id)
-  # }
 
   # Methods
 
@@ -49,4 +46,12 @@ class Place < ActiveRecord::Base
 
     return ary.take(3)
   end
+
+  # def self.top_places_by_culture_and_city(city, culture_id)
+  #   places = self.top_places_per_city(city)
+  #   culture_places = places.map do |place|
+  #     if
+
+  # end
+
 end
