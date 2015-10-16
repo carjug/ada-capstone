@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   # validates :culture_id, presence: true,
   #           numericality: { only_integer: true }
 
+  scope :users_by_culture, -> (culture_id) {
+    where('culture.id = ?', culture_id)
+  }
+
   # Methods
   def self.culture
     culture = Culture.find(self.culture_id)
