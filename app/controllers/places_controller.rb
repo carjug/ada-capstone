@@ -35,7 +35,9 @@ class PlacesController < ApplicationController
 
 
   def find_by_city
-    places = Place.where(city_id: params[:city])
+    city = City.find_by(name: params[:city])
+
+    places = Place.places_by_city(city)
 
     places = format_data(places) # method call
 

@@ -14,6 +14,10 @@ class Place < ActiveRecord::Base
             length: { minimum: 3 }
 
   # Scopes
+  scope :places_by_city, -> (city) {
+    joins(:city).where('city_id = ?', city.id )
+  }
+
   scope :top_places, -> {
     joins(:ratings).where('ratings.overall >= ?', 4)
   }
