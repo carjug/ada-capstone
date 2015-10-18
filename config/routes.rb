@@ -6,8 +6,8 @@ put '/places/:id'   => 'places#update'
 
 post '/register/:username/:password/:password_confirmation' => 'users#create'
 
-resource :cities, only: [:create, :update]
+post '/login/:username/:password' => 'sessions#create'
 
-resource :login, only: [:create], controller: :sessions
+resource :cities, only: [:create, :update]
 
 end

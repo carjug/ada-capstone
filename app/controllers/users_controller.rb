@@ -9,8 +9,8 @@ class UsersController < ApplicationController
         password_confirmation: params[:password_confirmation]
         )
       user.save!
-      status = :ok
       session[:user_id] = user.id
+      status = :ok
     rescue
       user = {}
       status = 400
