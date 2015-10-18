@@ -22,6 +22,11 @@ class Place < ActiveRecord::Base
     joins(:ratings).where('ratings.overall >= ?', 4)
   }
 
+  # scope :top_culture_by_place, -> (place) {
+  #   top_places.joins(:users).where('user_id = ratings.user_id').joins(:culture).where('users.culture_id = ')
+  # }
+
+
   scope :top_places_per_city, -> (city) {
     top_places.where('city_id = ?', city.id)
   }
@@ -49,6 +54,11 @@ class Place < ActiveRecord::Base
     ary.sort! { |x,y| y[1] <=> x[1] }
 
     return ary.take(3)
+  end
+
+  def most_common_culture(place)
+    ratings = self.ratings
+    binding.pry
   end
 
   def self.top_places_by_culture_and_city(city, culture_id)
