@@ -55,6 +55,7 @@ class Place < ActiveRecord::Base
   # want to refactor to at least partially a scope
   def most_common_top_culture
     top_cultures = {}
+
     self.ratings.each do |rating|
       if rating.overall >= 4
         user = User.find(rating.user_id)
