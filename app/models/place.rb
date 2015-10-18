@@ -10,8 +10,8 @@ class Place < ActiveRecord::Base
   # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
-  validates :categories, presence: true,
-            length: { minimum: 3 }
+  # validates :categories, presence: true,
+  #           length: { minimum: 3 }
 
   # Scopes
   scope :places_by_city, -> (city) {
@@ -21,10 +21,6 @@ class Place < ActiveRecord::Base
   scope :top_places, -> {
     joins(:ratings).where('ratings.overall >= ?', 4)
   }
-
-  # scope :top_culture_by_place, -> (place) {
-  #   top_places.joins(:users).where('user_id = ratings.user_id').joins(:culture).where('users.culture_id = ')
-  # }
 
 
   scope :top_places_per_city, -> (city) {
@@ -56,20 +52,27 @@ class Place < ActiveRecord::Base
     return ary.take(3)
   end
 
-  def most_common_culture(place)
-    ratings = self.ratings
-    binding.pry
-  end
-
-  def self.top_places_by_culture_and_city(city, culture_id)
-    returned_places = []
-    places = self.top_places_per_city(city)
-
-    places.each do |place|
-      if place.culture_id == culture_id
-        returned_places << place
+  # want to refactor to a scope
+  def most_common_top_culture
+    top_cultures = {}
+    self.ratings.each do |rating|
+      if rating.overall >= 4
+        user = User.find(rating.user_id)
+        culture = Culture.find(user.culture_id)
+        title = culture.title
+        if top_cultures.has_key?(title)
+          top_cultures[title] += 1
+        else
+          top_cultures.store(title, 1)
+        end
       end
     end
-  end
+    ary = top_cultures.to_a
+    ary.sort! { |x, y| y[1] <=> x[1] }
 
+    new_culture = Culture.find_by(title: ary[0][0])
+    self.culture_id = new_culture.id
+    self.save!
+    return ary[0][0]
+  end
 end
