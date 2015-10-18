@@ -2,13 +2,20 @@ class UsersController < ApplicationController
 
   # POST /register
   def create
-    user = User.new(user_params)
-    if user.save
+    begin
+      user = User.new(
+        username: params[:username],
+        password: params[:password],
+        password_confirmation: params[:password_confirmation]
+        )
+      user.save!
+      status = :ok
       session[:user_id] = user.id
-      render json: user, status: 200
-    else
-      render json: { error: "Could not create user" }, status: 400
+    rescue
+      user = {}
+      status = 400
     end
+    render json: user, status: status
   end
 
   private

@@ -36,10 +36,8 @@ class PlacesController < ApplicationController
 
   def find_by_city
     begin
-      city = City.find_by(name: params[:city])
-
+      city   = City.find_by(name: params[:city])
       places = Place.places_by_city(city)
-
       places = format_data(places) # method call
 
       places.empty? ? status = :no_content : status = :ok
@@ -47,7 +45,6 @@ class PlacesController < ApplicationController
       places = {}
       status = :no_content
     end
-
     render json: places.as_json, status: status
   end
 

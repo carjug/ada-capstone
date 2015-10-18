@@ -38,7 +38,7 @@ module AdaCapstone
 
         resource '/cors',
           :headers => :any,
-          :methods => [:post],
+          # :methods => [:post],
           :credentials => true,
           :max_age => 0
 
