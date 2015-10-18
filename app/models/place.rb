@@ -52,7 +52,7 @@ class Place < ActiveRecord::Base
     return ary.take(3)
   end
 
-  # want to refactor to a scope
+  # want to refactor to at least partially a scope
   def most_common_top_culture
     top_cultures = {}
     self.ratings.each do |rating|
