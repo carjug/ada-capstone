@@ -34,8 +34,12 @@ module AdaCapstone
 
     config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do
-        origins '*'
+        origins 'localhost:8888'
+        resource '*',
+        :headers => :any,
+        :methods => [:get, :post, :options, :delete]
 
+        origins '*'
         resource '/cors',
           :headers => :any,
           :credentials => true,

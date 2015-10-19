@@ -50,11 +50,6 @@ RSpec.describe Place, type: :model do
       expect(place.categories.count).to eq 3
     end
 
-    it "has at least 3 associated categories" do
-      place.categories = Category.where(category: "cool")
-      expect(place).to_not be_valid
-    end
-
     it "has associated categories" do
       place.save!
 

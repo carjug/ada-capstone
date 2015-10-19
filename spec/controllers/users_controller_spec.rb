@@ -5,7 +5,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe "POST register" do
     it "returns success" do
-      post :create, user: {
+      post :create, {
+        email:    user.email,
         username: user.username,
         password: user.password,
         password_confirmation: user.password_confirmation

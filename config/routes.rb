@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
 
 get '/places/:city' => 'places#find_by_city'
-post '/places'      => 'places#create'
-put '/places/:id'   => 'places#update'
+post '/login' => 'sessions#create'
 
-post '/register/:email/:username/:password/:password_confirmation' => 'users#create'
-
-post '/login/:username/:password' => 'sessions#create'
-
-resource :cities, only: [:create, :update]
+resources :cities, only: [:create, :update]
+resources :users, only: [:create, :update, :destroy]
+resources :places, only: [:create, :update, :show]
 
 end

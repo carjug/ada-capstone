@@ -57,7 +57,7 @@ RSpec.describe PlacesController, type: :controller do
       place.save!
 
       get :find_by_city, {
-        city: city.id,
+        city: city.name,
       }
 
       expect(response.status).to eq 200

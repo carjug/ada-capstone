@@ -1,14 +1,5 @@
 class PlacesController < ApplicationController
 
-  # Google places text search URI
-  # TEXT_API_URI = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
-
-  # NEARBY_API_URI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-
-  # SALT_LAKE = "40.758701, -111.876183"
-
-  # KEY = ENV["GOOGLE_KEY"]
-
   def create
     place = Place.new(place_params)
 
@@ -99,37 +90,4 @@ class PlacesController < ApplicationController
     end
   end
 
-
-  # Below are currently useless methods
-
-
-  # def call_google(city)
-  #   response_array = []
-  #   response1 = HTTParty.get(NEARBY_API_URI + "location=" + SALT_LAKE + "&radius=10000" + "&rankby=prominence" + "&types=amusement_park|aquarium|art_gallery|bakery|bar|beauty_salon|book_store|bowling_alley|cafe|campground|cemetery|city_hall|clothing_store|department_store|florist|food|furniture_store|grocery_or_supermarket|gym|hindu_temple|home_goods_store|jewelry_store|library|liquor_store|mosque|movie_theater|museum|night_club|park|place_of_worship|restaurant|shoe_store|shopping_mall|spa|stadium|university|zoo" + "&key=" + KEY)
-  #   response_array.push(response1)
-
-  #   if response1["next_page_token"] != nil
-  #     page_token = response1["next_page_token"]
-  #     response2 = HTTParty.get(NEARBY_API_URI + "pagetoken=" + page_token + "&key=" + KEY)
-
-  #     if response2["status"] == "INVALID_REQUEST"
-  #       response3 = HTTParty.get(NEARBY_API_URI + "pagetoken=" + page_token + "&key=" + KEY)
-  #     else
-  #       response_array.push(response2)
-  #       response_array.push(response3)
-  #     end
-  #   end
-  #   return response_array
-  # end
-
-  # def create_places(response)
-  #   data = response[0].body
-  #   data = JSON.parse(data)
-  #   name_count = 0
-  #   data["results"].each do |place|
-  #     print place["name"]
-  #     name_count += 1
-  #   end
-  #   print("NAME COUNT = ", name_count) # for testing
-  # end
 end
