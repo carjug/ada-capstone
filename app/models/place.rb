@@ -1,3 +1,4 @@
+require 'csv'
 class Place < ActiveRecord::Base
   # Associations
   belongs_to :city
@@ -33,6 +34,27 @@ class Place < ActiveRecord::Base
 
 
   # Methods
+
+  def self.write_csv
+    collection = self.all
+    header = ["response","question","question_id","place_id","user_id","cat_or_ord"]
+    file = "slim_response_data.csv"
+
+    CSV.open(file, "w") do |writer|
+      writer << header
+      collection.each do |place|
+        if place.id != 1
+          u_responses = place.responses
+          u_responses.each do |r|
+            q = Question.find(r.question_id)
+            if q.question == "Overall"
+              writer << [r.response, q.question, r.question_id, r.place_id, r.user_id, q.cat_or_ord]
+            end
+          end
+        end
+      end
+    end
+  end
 
   def top_categories_per_place
     top_cats = {}
