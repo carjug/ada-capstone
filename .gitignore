@@ -15,3 +15,5 @@
 slc_restaurants.csv
 /config/database.yml
 coverage/*
+db/user_seed_data.csv
+db/questions_seed_data.csv

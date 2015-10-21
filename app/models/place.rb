@@ -2,7 +2,7 @@ class Place < ActiveRecord::Base
   # Associations
   belongs_to :city
   belongs_to :place_type
-  has_many :ratings
+  has_many :responses
   has_and_belongs_to_many :categories
 
   # Validations

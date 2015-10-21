@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018221209) do
+ActiveRecord::Schema.define(version: 20151020224124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "answers", force: :cascade do |t|
-    t.string   "answer"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
@@ -49,20 +42,10 @@ ActiveRecord::Schema.define(version: 20151018221209) do
     t.string   "code"
   end
 
-  create_table "cultures", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
+  create_table "place_types", force: :cascade do |t|
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "place_types", force: :cascade do |t|
-    t.string   "type"
-    t.string   "axis1"
-    t.string   "axis2"
-    t.string   "axis3"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -71,7 +54,6 @@ ActiveRecord::Schema.define(version: 20151018221209) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "place_type_id"
-    t.integer  "culture_id"
   end
 
   create_table "provs", force: :cascade do |t|
@@ -83,29 +65,34 @@ ActiveRecord::Schema.define(version: 20151018221209) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.string   "option4"
+    t.string   "option5"
+    t.integer  "place_type_id"
+    t.string   "cat_or_ord"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "question"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "overall"
-    t.integer  "rating1"
-    t.integer  "rating2"
-    t.integer  "rating3"
+  create_table "responses", force: :cascade do |t|
+    t.string   "response"
+    t.integer  "question_id"
     t.integer  "user_id"
     t.integer  "place_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.integer  "culture_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "email"
+    t.integer  "city_id"
   end
 
 end

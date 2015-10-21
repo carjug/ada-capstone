@@ -1,47 +1,22 @@
-FactoryGirl.define do
-
-  factory :rating do
-    overall 5
-    rating1 4
-    rating2 5
-    rating3 5
-    user_id 1
-    place_id 4
+FactoryGirl.define do  factory :place_type do
+    description "MyString"
   end
-
-  factory :rating1, class: Rating do
-    overall 5
-    rating1 4
-    rating2 5
-    rating3 4
-    user_id 1
-    place_id 3
+  factory :response do
+    response "MyString"
+question_id 1
+user_id 1
+place_id 1
   end
-
-  factory :place_type do
-    id 1
-    type "Food and Drink"
-    axis1 "Ambience"
-    axis2 "Food/Drink Quality"
-    axis3 "Service"
-  end
-
-  factory :answer do
-    id 6
-    answer "An answer"
-    question_id 3
-  end
-
   factory :question do
-    id 3
-    question "A Question?"
+    option1 "MyString"
+option2 "MyString"
+option3 "MyString"
+option4 "MyString"
+option5 "MyString"
+place_type_id 1
+cat_or_ord "MyString"
   end
 
-  factory :culture do
-    id 3
-    title "A Culture"
-    description "A description"
-  end
 
   factory :user do
     id 1
