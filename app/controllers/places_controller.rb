@@ -24,6 +24,12 @@ class PlacesController < ApplicationController
     end
   end
 
+  def index
+    city = City.find_by(name: params[:city])
+
+    @places = Place.where(city_id: city.id)
+  end
+
 
   def find_by_city
     begin

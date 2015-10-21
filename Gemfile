@@ -8,6 +8,10 @@ gem 'pg'
 
 gem 'jaccard'
 
+gem 'sass-rails', '~> 5.0'
+
+gem 'bootstrap-sass', '~> 3.3.5'
+
 gem 'rails-api', '~> 0.4.0'
 
 gem 'httparty'
