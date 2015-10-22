@@ -16,6 +16,7 @@ end
 
 every 15.minutes do
   runner "Place.write_csv"
+  runner "User.create_user_recommendations"
 end
 
 
