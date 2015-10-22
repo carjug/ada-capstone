@@ -1,4 +1,10 @@
-FactoryGirl.define do  factory :place_type do
+FactoryGirl.define do  factory :user_recommendation do
+    user_id 1
+place_id 1
+score 1
+rank 1
+  end
+  factory :place_type do
     description "MyString"
   end
   factory :response do
