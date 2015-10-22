@@ -1,16 +1,23 @@
 class SessionsController < ApplicationController
 
+  def new
+
+  end
+
+  def index
+
+  end
+
   def create
-    begin
-      user = User.find_by(username: params[:username])
+    user = User.find_by(username: params[:username])
 
-      user.authenticate(params[:password])
-      # binding.pry
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      redirect_to "/"
+    else
+      flash.now[:errors] = "Login failed. Try again."
 
-      render json: { user: user.username, token: user.password_digest, status: 200 }
-    rescue
-      render json: { error: "Login unsuccessful" }, status: 400
+      render :new
     end
   end
 end

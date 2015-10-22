@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
       user_rec.place_name = place.name
       user_rec.save!
     end
-
   end
+
 end
 
