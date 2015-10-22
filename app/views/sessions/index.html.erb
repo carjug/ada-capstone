@@ -3,8 +3,12 @@
     <div class="small-header">
       <a href="home.view.html" id="logo" class="pull-left"><h3>Niche</h3></a>
       <h5 class="greet pull-left"></h5>
-      <h5 class="login pull-right"><%= link_to "Login", (login_path) %></h5>
-      <h5 class="register pull-right"><%= link_to "Register", (login_path) %></h5>
+      <% if session[:user_id] %>
+        <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
+      <% else %>
+        <h5 class="login pull-right"><%= link_to "Login", (login_path) %></h5>
+        <h5 class="register pull-right"><%= link_to "Register", (login_path) %></h5>
+      <% end %>
     </div>
 
     <div class="jumbotron header">

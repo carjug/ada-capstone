@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+root 'sessions#index'
+
 get '/places/:city' => 'places#index'
 get '/login' => 'sessions#new', as: 'login'
-get '/' => 'sessions#index'
 
 
 resources :sessions, only: [:create]
