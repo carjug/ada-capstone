@@ -54,6 +54,7 @@ GEM
       sass (>= 3.3.0)
     builder (3.2.2)
     byebug (6.0.2)
+    chronic (0.10.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -82,7 +83,6 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    jaccard (1.0.2)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -195,6 +195,8 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -209,7 +211,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails (~> 4.0)
   httparty
-  jaccard
   jbuilder (~> 2.0)
   jquery-rails
   pg
@@ -224,6 +225,7 @@ DEPENDENCIES
   spring
   turbolinks
   web-console (~> 2.0)
+  whenever
 
 BUNDLED WITH
    1.10.6

@@ -38,7 +38,7 @@ class Place < ActiveRecord::Base
   def self.write_csv
     collection = self.all
     header = ["response","question","question_id","place_id","user_id","cat_or_ord"]
-    file = "slim_response_data.csv"
+    file = "#{Rails.root}/lib/recommender/slim_response_data.csv"
 
     CSV.open(file, "w") do |writer|
       writer << header
