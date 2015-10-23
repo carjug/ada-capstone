@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 root 'sessions#home'
 
-# get '/places/:city' => 'places#index'
 get '/login' => 'sessions#new', as: 'login'
 get '/logout' => 'sessions#logout', as: 'logout'
 get '/search' => 'places#search', as: 'search'
