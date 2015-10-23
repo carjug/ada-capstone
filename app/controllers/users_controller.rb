@@ -15,9 +15,13 @@ class UsersController < ApplicationController
       city_id: city.id)
     user.save!
 
-    session[:user_id] = user.id
-
-    redirect_to new_response_path
+    if user.save!
+      session[:user_id] = user.id
+      redirect_to new_response_path
+    else
+      flash[:register_error] = "Registration failed, try again."
+      redirect_to login_path
+    end
   end
 
   private

@@ -8,14 +8,14 @@
 </head>
 <body>
   <div class="small-header">
-      <a href="/" id="logo" class="pull-left"><h3>Niche</h3></a>
-      <h5 class="greet pull-left"></h5>
-      <% if session[:user_id] %>
-        <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
-        <h5 class="places-link pull-right"><%= link_to "Rate Places", (new_response_path) %></h5>
-        <h5 class="places-link pull-right"><%= link_to "Add Places", (new_place_path) %></h5>
-      <% end %>
-    </div>
+    <a href="/" id="logo" class="pull-left">Niche</a>
+    <h5 class="greet pull-left"></h5>
+    <% if session[:user_id] %>
+      <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
+      <h5 class="places-link pull-right"><%= link_to "Rate Places", (new_response_path) %></h5>
+      <h5 class="places-link pull-right"><%= link_to "Add Places", (new_place_path) %></h5>
+    <% end %>
+  </div>
 
   <%= yield %>
 

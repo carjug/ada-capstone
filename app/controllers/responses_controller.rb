@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :current_user
+  before_action :current_user, :authorize
 
   def new
     @places = Place.where(city_id: @current_user.city_id)

@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :current_user
+  before_action :current_user, :authorize
 
   def new
     @place = Place.new
@@ -35,20 +35,6 @@ class PlacesController < ApplicationController
     place.update(name: params[:name])
 
     categories_update(place) # method call
-  end
-
-  def find_by_city
-    begin
-      city   = City.find_by(name: params[:city])
-      places = Place.places_by_city(city)
-      places = format_data(places) # method call
-
-      places.empty? ? status = :no_content : status = :ok
-    rescue
-      places = {}
-      status = :no_content
-    end
-    render json: places.as_json, status: status
   end
 
   private
