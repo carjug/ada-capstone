@@ -13,8 +13,8 @@ class UsersController < ApplicationController
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],
       city_id: city.id)
-
     user.save!
+
     session[:user_id] = user.id
 
     redirect_to home_path
