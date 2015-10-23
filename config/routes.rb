@@ -5,9 +5,9 @@ root 'sessions#home'
 get '/places/:city' => 'places#index'
 get '/login' => 'sessions#new', as: 'login'
 get '/logout' => 'sessions#logout', as: 'logout'
-get '/search' => 'places#index', as: 'search'
+get '/search' => 'places#search', as: 'search'
 get '/home'   =>  'sessions#home', as: 'home'
-
+# get '/results' => 'places#results', as: 'results'
 
 resources :sessions, only: [:create]
 resources :cities, only: [:create, :update]

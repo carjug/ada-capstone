@@ -16,19 +16,26 @@
         <div class="row">
           <div class="col-lg-6 col-lg-offset-3">
             <h1 id="welcome">Welcome to Niche</h1>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Where are you going?">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button" method="get">Go!</button>
-              </span>
-              <div class="message">
-              </div>
+              <%= form_for(
+                  :city,
+                  url: search_path(:city),
+                  html: {method: "get" } ) do |f| %>
+                <div class="input-group">
+                <%= f.text_field :city, class: "form-control", placeholder: "Where are you going?"%>
+                <span class="input-group-btn">
+                <%= f.submit "Go!", class: "btn btn-default" %>
+                </span>
+              <% end %>
             </div> <!--input-group -->
           </div> <!-- col-lg-6 -->
         </div> <!-- row -->
       </div>
     </div>
   </header>
+
+<div class="message">
+</div>
+
 
   <div class="jumbotron user-previews">
     <div class="container">
