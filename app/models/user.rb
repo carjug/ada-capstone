@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :username, uniqueness: true, on: :create
 
+  # Scopes
+
+
   def self.create_user_recommendations
     UserRecommendation.delete_all
     CSV.foreach("#{Rails.root}/lib/recommender/new_csv_file.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all }) do |row|
