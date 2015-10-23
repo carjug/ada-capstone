@@ -7,11 +7,11 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    response = Response.create(
-      response: params[:response][:response],
-      place_id: params[:place_id],
-      question_id: params[:question_id],
-      user_id:  @current_user.id)
+    response = Response.new(response_params)
+
+    response.response = response: params[:response][:response]
+    response.user_id  = user_id:  @current_user.id
+    response.save!
 
     redirect_to home_path
   end

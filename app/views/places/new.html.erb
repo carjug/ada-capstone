@@ -1,29 +1,26 @@
-<%= form_for @place, html: {class: "form"} do |f| %>
+<div class="col-lg-8 col-lg-offset-2">
+  <%= form_for @place, url: places_path, html: {class: "form form-responsive"} do |f| %>
 
-  <fieldset>
-    <legend>Place Details</legend>
+    <fieldset>
+      <legend>Place Details</legend>
 
-    <div class="form-group">
-      <%= f.label :name, "Name: " %>
-      <%= f.text_field :name, class: "form-control", :required => true %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", :required => true %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label person %>
-      <%= f.text_field person, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :city %>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :description, "Description: " %>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= select_tag 'Place Type', options_for_select(
+          @place_types.collect{ |u| [u.description, u.id] }),
+          options = { prompt: "Select a Place Type" } %>
+      </div>
+    </fieldset>
 
-
-    <div class="form-group">
-      <%= f.label :rank, "Rank: " %>
-      <%= f.number_field :rank, class: "form-control" %>
-    </div>
-  </fieldset>
-
-  <%= f.submit "Add #{object.class}", class: "btn btn-default" %>
-<% end %>
+    <%= f.submit "Add Place", class: "btn btn-default" %>
+  <% end %>
+</div>

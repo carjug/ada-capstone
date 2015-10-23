@@ -1,14 +1,15 @@
 class PlacesController < ApplicationController
   before_action :current_user
 
+  def new
+    @place = Place.new
+    @place_types = PlaceType.where('id > 1')
+  end
+
   def search
     city = City.find_by(name: params[:city][:city])
 
     @places = @current_user.user_recommendations
-  end
-
-  def index
-
   end
 
   def create
