@@ -4,6 +4,7 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
     @place_types = PlaceType.where('id > 1')
+    @response = Response.new
   end
 
   def search
@@ -13,7 +14,19 @@ class PlacesController < ApplicationController
   end
 
   def create
-    place = Place.new(place_params)
+    city          = City.find_by(name: params[:place][:city])
+    place         = Place.new(place_params)
+    place.city_id = city.id
+    place.save!
+
+    response             = Response.new
+    response.response    = params[:response]
+    response.place_id    = place.id
+    response.user_id     = @current_user.id
+    response.question_id = params[:question_id]
+    response.save!
+
+    redirect_to home_path
   end
 
   def update
@@ -42,6 +55,10 @@ class PlacesController < ApplicationController
 
   def place_params
     params.require(:place).permit(:name, :city_id, :categories)
+  end
+
+  def response_params
+    params.require(:response).permit(:response, :place_id, :user_id, :question_id)
   end
 
   def categories_update(place)
