@@ -8,11 +8,11 @@ class Place < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
+  validates_uniqueness_of :name, scope: :city_id
   # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
-  # validates :categories, presence: true,
-  #           length: { minimum: 3 }
+
 
   # Scopes
   scope :places_by_city, -> (city) {
