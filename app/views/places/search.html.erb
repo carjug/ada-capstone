@@ -5,10 +5,22 @@
       <th>Rank for You</th>
       <th>Name</th>
     </tr>
-    <% @places.each do |place| %>
+    <% @recommended_places.each do |place| %>
       <tr>
         <td><%= place.rank %></td>
         <td><%= place.place_name %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<h3 class="table-header">Other Places</h3>
+  <table class="table table-responsive">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @other_places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
       </tr>
     <% end %>
   </table>

@@ -9,8 +9,8 @@ class ResponsesController < ApplicationController
   def create
     response = Response.new(response_params)
 
-    response.response = response: params[:response][:response]
-    response.user_id  = user_id:  @current_user.id
+    response.response = params[:response][:response]
+    response.user_id  = @current_user.id
     response.save!
 
     redirect_to home_path

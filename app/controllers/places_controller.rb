@@ -10,7 +10,8 @@ class PlacesController < ApplicationController
   def search
     city = City.find_by(name: params[:city][:city])
 
-    @places = @current_user.user_recommendations
+    @recommended_places = @current_user.user_recommendations
+    @other_places       = Place.places_by_city(city)
   end
 
   def create

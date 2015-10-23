@@ -12,6 +12,13 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true, on: :create
 
   # Scopes
+  scope :recs_by_user_city, -> (user, city) {
+    user.user_recommendations.joins(:place).where('place.city_id = ?', city.id)
+  }
+
+  def recs_by_user_city(city)
+
+  end
 
 
   def self.create_user_recommendations

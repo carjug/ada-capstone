@@ -1,28 +1,32 @@
-FactoryGirl.define do  factory :user_recommendation do
+FactoryGirl.define do
+
+  factory :user_recommendation do
     user_id 1
-place_id 1
-score 1
-rank 1
+    place_id 1
+    score 1
+    rank 1
   end
+
   factory :place_type do
     description "MyString"
   end
+
   factory :response do
-    response "MyString"
-question_id 1
-user_id 1
-place_id 1
-  end
-  factory :question do
-    option1 "MyString"
-option2 "MyString"
-option3 "MyString"
-option4 "MyString"
-option5 "MyString"
-place_type_id 1
-cat_or_ord "MyString"
+    response "My Response"
+    question_id 1
+    user_id 1
+    place_id 1
   end
 
+  factory :question do
+    option1 "MyString"
+    option2 "MyString"
+    option3 "MyString"
+    option4 "MyString"
+    option5 "MyString"
+    place_type_id 1
+    cat_or_ord "MyString"
+  end
 
   factory :user do
     id 1
