@@ -1,4 +1,11 @@
 class PlacesController < ApplicationController
+  before_action :current_user
+
+  def index
+    city = City.find_by(name: params[:city])
+
+    @places = UserRecommendation.find_by(user_id: @current_user.id).where(city_id: city.id)
+  end
 
   def create
     place = Place.new(place_params)
@@ -23,13 +30,6 @@ class PlacesController < ApplicationController
       render json: { message: "Place updates could not be saved" }
     end
   end
-
-  def index
-    city = City.find_by(name: params[:city])
-
-    @places = Place.where(city_id: city.id)
-  end
-
 
   def find_by_city
     begin

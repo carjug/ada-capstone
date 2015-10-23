@@ -1,5 +1,11 @@
 class SessionsController < ApplicationController
-  before_action :current_user
+  skip_before_action :verify_authenticity_token
+  before_action :current_user, :authorize, only: [:home]
+
+  def home
+    # raise
+  end
+
   def new
 
   end
@@ -13,12 +19,17 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
-      @user = user
-      redirect_to '/'
+      redirect_to home_path
     else
       flash.now[:login_error] = "Login failed. Try again."
 
       render :new
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+
+    render :index
   end
 end

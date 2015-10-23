@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-
-  before_action :current_user
+  protect_from_forgery with: :exception
   helper_method :current_user
-
 
   def current_user
     if session[:user_id]
@@ -12,7 +9,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    redirect_to '/login' unless current_user
+    unless current_user
+      redirect_to '/login'
+    end
   end
 
 end

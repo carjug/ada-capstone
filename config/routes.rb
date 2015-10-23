@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
-root 'sessions#index'
+root 'sessions#home'
 
 get '/places/:city' => 'places#index'
 get '/login' => 'sessions#new', as: 'login'
+get '/logout' => 'sessions#logout', as: 'logout'
+get '/search' => 'places#index', as: 'search'
+get '/home'   =>  'sessions#home', as: 'home'
 
 
 resources :sessions, only: [:create]
