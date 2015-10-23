@@ -7,6 +7,7 @@ get '/login' => 'sessions#new', as: 'login'
 get '/logout' => 'sessions#logout', as: 'logout'
 get '/search' => 'places#search', as: 'search'
 get '/home'   =>  'sessions#home', as: 'home'
+get '/register' => 'users#new', as: 'register'
 # get '/results' => 'places#results', as: 'results'
 
 resources :sessions, only: [:create]

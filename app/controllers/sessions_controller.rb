@@ -30,6 +30,6 @@ class SessionsController < ApplicationController
   def logout
     session[:user_id] = nil
 
-    render :index
+    redirect_to home_path
   end
 end
