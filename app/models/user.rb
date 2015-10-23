@@ -16,10 +16,6 @@ class User < ActiveRecord::Base
     user.user_recommendations.joins(:place).where('place.city_id = ?', city.id)
   }
 
-  def recs_by_user_city(city)
-
-  end
-
 
   def self.create_user_recommendations
     UserRecommendation.delete_all
