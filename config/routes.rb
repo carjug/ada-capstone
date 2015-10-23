@@ -8,8 +8,9 @@ get '/logout' => 'sessions#logout', as: 'logout'
 get '/search' => 'places#search', as: 'search'
 get '/home'   =>  'sessions#home', as: 'home'
 get '/register' => 'users#new', as: 'register'
-# get '/results' => 'places#results', as: 'results'
 
+
+resources :responses, only: [:new, :create]
 resources :sessions, only: [:create]
 resources :cities, only: [:create, :update]
 resources :users, only: [:create, :update, :destroy]

@@ -9,7 +9,7 @@
     <br>
   <% end %>
 
-  <%= form_for(:user, url: users_path) do |f| %>
+  <%= form_for :user, url: users_path do |f| %>
     <div class="form-group">
       <%= f.label :email %>
       <%= f.text_field :email, class: "form-control" %>
