@@ -13,12 +13,6 @@ class PlacesController < ApplicationController
 
   def create
     place = Place.new(place_params)
-
-    if place.save
-      render json: place.as_json, status: 200
-    else
-      render json: { message: "Place could not be saved" }
-    end
   end
 
   def update
@@ -27,12 +21,6 @@ class PlacesController < ApplicationController
     place.update(name: params[:name])
 
     categories_update(place) # method call
-
-    if place.save
-      render json: place.as_json, status: 200
-    else
-      render json: { message: "Place updates could not be saved" }
-    end
   end
 
   def find_by_city
@@ -47,17 +35,6 @@ class PlacesController < ApplicationController
       status = :no_content
     end
     render json: places.as_json, status: status
-  end
-
-# This does not yet consider a person's preferences
-  def find_by_city_and_preferences
-    # get user similarity index either to other users that have rated places in the city of interest
-    # ^ can be done with the concept of cultures
-
-    # or find places with high similarity to user's highly rated places
-    # ^ how to do this is the question -- maybe using categories?!
-    # or both!
-
   end
 
   private
@@ -75,29 +52,4 @@ class PlacesController < ApplicationController
       end
     end
   end
-
-  def format_data(response)
-    city    = City.find(response[0].city_id)
-    prov    = Prov.find(city.prov_id)
-    country = Country.find(prov.country_id)
-
-    response.map do |place|
-     {
-        name: place.name,
-        place_type: place.place_type_id || "",
-        city: {
-          name: city.name
-        },
-        prov: {
-          name: prov.name,
-          abbreviation: prov.abbreviation
-        },
-        country: {
-          name: country.name,
-          code: country.code
-        }
-      }
-    end
-  end
-
 end

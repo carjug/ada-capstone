@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_action :current_user, :authorize, only: [:home]
 
   def home
-    # raise
+
   end
 
   def new

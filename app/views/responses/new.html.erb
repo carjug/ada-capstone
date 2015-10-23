@@ -22,6 +22,7 @@
           <%= f.label(:response, "5") %>
           <%= f.radio_button(:response, "5") %>
           <%= hidden_field_tag(:place_id, place.id) %>
+          <%= hidden_field_tag(:question_id, 28) %>
         </td>
         <td><%= f.submit "Submit" %></td>
       </tr>
