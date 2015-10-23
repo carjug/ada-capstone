@@ -1,5 +1,15 @@
-<div>
-  <% @places.each do |p| %>
-    <%= p.place_name %>
-  <% end %>
+<div class"col-lg-6 col-lg-offset-3">
+  <h3 class="table-header">Recommendations for You</h3>
+  <table class="table table-responsive">
+    <tr>
+      <th>Rank for You</th>
+      <th>Name</th>
+    </tr>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.rank %></td>
+        <td><%= place.place_name %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
