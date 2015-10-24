@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :current_user, :authorize
 
   def new
@@ -16,8 +17,16 @@ class ResponsesController < ApplicationController
     redirect_to home_path
   end
 
-  def update
+  def edit
+    @place_response = current_user.responses.find(params[:id])
+    @place_name = Place.find(@place_response.place_id).name
+  end
 
+  def update
+    response = current_user.responses.find(params[:id])
+    response.update(response: params[:response])
+
+    redirect_to profile_path
   end
 
   private

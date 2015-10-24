@@ -39,11 +39,6 @@
   background-size: 160rem 68rem;
 }
 
-.greet {
-  padding-left: 1.5rem;
-  margin-top: 2.75rem;
-}
-
 #welcome {
   padding-top: 10rem;
 }
@@ -60,6 +55,12 @@
 
 .places-link {
   padding-right: 1rem;
+}
+
+#welcome-title {
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+
 }
 
 .register {
@@ -87,6 +88,14 @@
 
 .form {
   margin-top: 10rem;
+}
+
+.form-aside {
+  position: relative;
+  height: 100%;
+  width: 20rem;
+  float: left;
+  background-image: url("van.jpeg");
 }
 
 .user-previews {
