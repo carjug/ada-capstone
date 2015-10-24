@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :current_user, :authorize, only: :profile
+
   def new
     render :register
   end

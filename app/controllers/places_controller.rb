@@ -34,14 +34,6 @@ class PlacesController < ApplicationController
     redirect_to home_path
   end
 
-  def update
-    place = Place.find(params[:id])
-
-    place.update(name: params[:name])
-
-    categories_update(place) # method call
-  end
-
   private
 
   def place_params
@@ -61,16 +53,6 @@ class PlacesController < ApplicationController
       Place.create(
         name: d["name"]
       )
-    end
-  end
-
-  def categories_update(place)
-    new_categories = params[:categories]
-
-    new_categories.each do |cat|
-      if !cat.empty?
-        place.categories << Category.find(cat)
-      end
     end
   end
 end

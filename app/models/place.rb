@@ -9,7 +9,6 @@ class Place < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates_uniqueness_of :name, scope: :city_id
-  # validates :place_type_id, presence: true
   validates :city_id, presence: true,
             numericality: { only_integer: true }
 
@@ -20,10 +19,6 @@ class Place < ActiveRecord::Base
 
   scope :places_user_has_rated, -> (user) {
     joins(:responses).where('user_id = ?', user.id)
-  }
-
-  scope :places_user_has_not_rated, -> (user) {
-    places_user_has_rated(user)
   }
 
   scope :top_places, -> {
