@@ -12,9 +12,11 @@
 
 <table class="table">
   <th>Places I've Rated</th>
+  <th>My Rating</th>
     <% @my_places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
+        <td><%= place.place_rating(current_user) %></td>
         <td> Change Rating (button eventually) </td>
         <td></td>
         <td></td>

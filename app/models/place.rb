@@ -13,7 +13,6 @@ class Place < ActiveRecord::Base
   validates :city_id, presence: true,
             numericality: { only_integer: true }
 
-
   # Scopes
   scope :places_by_city, -> (city) {
     joins(:city).where('city_id = ?', city.id )
@@ -41,7 +40,7 @@ class Place < ActiveRecord::Base
     top_places.where('ratings.user_id = ?', user.id)
   }
 
-  # Methods
+  # Method
 
   def self.write_csv
     collection = self.all
