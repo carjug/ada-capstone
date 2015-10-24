@@ -2,6 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 # Rails whenever environment is currently set to development -- need to change this for production!
 
+# Background offline jobs
+
 set :output, "#{Rails.root}/log/cron.log"
 
 every 10.minutes do
@@ -13,10 +15,3 @@ every 15.minutes do
   runner "User.create_user_recommendations"
 end
 
-
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
-# Learn more: http://github.com/javan/whenever

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :current_user, :authorize, only: :profile
   def new
     render :register
   end
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
       flash[:register_error] = "Registration failed, try again."
       redirect_to login_path
     end
+  end
+
+  def profile
+    @my_places = Place.places_user_has_rated(@current_user)
   end
 
   private

@@ -20,7 +20,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :places_user_has_rated, -> (user) {
-
+    joins(:responses).where('user_id = ?', user.id)
   }
 
   scope :places_user_has_not_rated, -> (user) {
