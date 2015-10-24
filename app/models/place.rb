@@ -47,6 +47,11 @@ class Place < ActiveRecord::Base
     place.response
   end
 
+  def response_id(user)
+    r = user.responses.find_by("place_id = ?", self.id)
+    r.id
+  end
+
   def self.write_csv
     collection = self.all
     header = ["response","question","question_id","place_id","user_id","cat_or_ord"]

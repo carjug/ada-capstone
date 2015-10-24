@@ -11,7 +11,7 @@
       <tr>
         <td><%= place.name %></td>
         <td><%= place.place_rating(current_user) %></td>
-        <td> Change Rating (button eventually) </td>
+        <td><%= link_to "Change Rating", edit_response_path(place.response_id(current_user)) %></td>
         <td></td>
         <td></td>
       </tr>

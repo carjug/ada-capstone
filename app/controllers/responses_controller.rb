@@ -16,6 +16,10 @@ class ResponsesController < ApplicationController
     redirect_to home_path
   end
 
+  def update
+
+  end
+
   private
 
   def response_params
