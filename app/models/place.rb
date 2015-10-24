@@ -40,7 +40,12 @@ class Place < ActiveRecord::Base
     top_places.where('ratings.user_id = ?', user.id)
   }
 
-  # Method
+  # Methods
+
+  def place_rating(user)
+    place = user.responses.find_by("place_id = ?", self.id)
+    place.response
+  end
 
   def self.write_csv
     collection = self.all
