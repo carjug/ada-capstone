@@ -7,7 +7,7 @@ get '/logout' => 'sessions#logout', as: 'logout'
 get '/search' => 'places#search', as: 'search'
 get '/home'   =>  'sessions#home', as: 'home'
 get '/register' => 'users#new', as: 'register'
-
+get '/profile' => 'users#profile', as: 'profile'
 
 resources :responses, only: [:new, :create]
 resources :sessions, only: [:create]
