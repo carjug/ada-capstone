@@ -11,10 +11,68 @@
     <tr>
       <td><%= place.name %></td>
       <td><%= place.place_rating(current_user) %></td>
-      <td><%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), remote: true %></td>
+      <td>
+      </td>
+      <td>
+        <%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } %>
+      </td>
       <td></td>
       <td></td>
     </tr>
   <% end %>
 </table>
-<div id="inner-response-modal" class="modal fade"></div>
+
+<script type="text/javascript">
+  $('.change').on('click', function(event) {
+    event.preventDefault();
+
+    var link = $(this);
+    var sibs = link.siblings();
+    var id = link.data("id");
+    var full_path = "/responses/" + id;
+    var place = link.data("value");
+    var parents = link.parents();
+    var response_modal = $("#inner-response-modal");
+
+    $('.modal-header').text(place);
+
+
+    console.log(full_path);
+    console.log(id);
+    response_modal.modal();
+    $('form').attr("action", full_path);
+
+  });
+
+</script>
+
+<div id="inner-response-modal" class="modal fade">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+    </div>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+      </div>
+      <%= form_tag("/", method: :patch) do %>
+        <div class="form-group">
+          <%= label_tag(:response, "1") %>
+          <%= radio_button_tag(:response, "1") %>
+          <%= label_tag(:response, "2") %>
+          <%= radio_button_tag(:response, "2") %>
+          <%= label_tag(:response, "3") %>
+          <%= radio_button_tag(:response, "3") %>
+          <%= label_tag(:response, "4") %>
+          <%= radio_button_tag(:response, "4") %>
+          <%= label_tag(:response, "5") %>
+          <%= radio_button_tag(:response, "5") %>
+          <%= hidden_field_tag(:question_id, 28) %>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag "Submit", class: "btn btn-primary" %>
+          <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+        </div>
+      <% end %>
+  </div>
+</div>
+</div>

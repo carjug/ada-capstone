@@ -8,7 +8,7 @@ response,question,question_id,place_id,user_id,cat_or_ord
 1,Overall,28,17,13,ordinal
 5,Overall,28,17,16,ordinal
 3,Overall,28,17,19,ordinal
-,Overall,28,17,21,ordinal
+1,Overall,28,17,21,ordinal
 4,Overall,28,18,4,ordinal
 3,Overall,28,18,5,ordinal
 2,Overall,28,18,8,ordinal

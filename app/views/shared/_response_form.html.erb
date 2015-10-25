@@ -1,10 +1,9 @@
+<div id="inner-response-modal" class="modal fade">
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
       <h3><%= "Edit #{@place_name} Rating" %></h3>
     </div>
-    <% modal ||= false %>
-    <% remote = modal ? true : false %>
     <%= form_for @place_response, url: response_path, remote: true, html: { style: "display:inline;" } do |f| %>
       <div class="modal-body">
         <ul class="errors"></ul>
@@ -29,3 +28,5 @@
     <% end %>
   </div>
 </div>
+</div>
+

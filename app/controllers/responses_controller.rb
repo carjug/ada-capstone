@@ -25,17 +25,7 @@ class ResponsesController < ApplicationController
   def update
     response = current_user.responses.find(params[:id])
     response.update(response: params[:response])
-    respond_to do |format|
-      if response.save
-        format.html { redirect_to profile_path, notice: 'Response successfully saved.'}
-        format.json { render action: 'show', status: :created, location: @person }
-        format.js   { render action: 'show', status: :created, location: @person }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: response.errors, status: :unprocessable_entity }
-        format.js   { render json: response.errors, status: :unprocessable_entity }
-      end
-    end
+
     redirect_to profile_path
   end
 
