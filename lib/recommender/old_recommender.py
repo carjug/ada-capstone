@@ -17,8 +17,6 @@ for u in users:
   user_places = user_places.tolist()
   user_places.sort()
   temp.append(user_places)
-# print temp
-# print len(temp)
 
 user_data_matrix = []
 user_avg_ratings = []
@@ -30,21 +28,12 @@ for u in users:
 
   user_ratings = data[data.user_id == u].response
   user_ratings = user_ratings.tolist()
-  # print user_ratings.place_id
   # Need to do get a matrix where the columns are places, the rows are users
   # And the data are ratings of the places
 
-  # print user_ratings
   avg = sum(user_ratings)/float(len(user_ratings))
   avg = round(avg, 1)
-  # print avg
   user_avg_ratings.append(avg)
-
-  # place_ratings = []
-  # place_rating = user_ratings.index(p)
-  # place_ratings.append(p)
-  # place_ratings.append(p)
-  # user_by_place_matrix.append(place_ratings)
 
   for p in places:
     try:
@@ -55,9 +44,7 @@ for u in users:
   user_data_matrix.append(user_array)
 
 print user_data_matrix
-# print len(user_data_matrix)
 print user_avg_ratings
-# print user_ratings_by_place_matrix
 
 def get_place_reviews(place, common_reviewers):
   reviewer_places = (data.user_id.isin(common_reviewers)) & (data.place_id==place)
@@ -90,7 +77,6 @@ for i in places:
     # the users that have reviewed both of the places in question
     # print "Common reviewer IDs ", common_reviewers, "place 1 =", place_1_id, "place 2 =", place_2_id
     # print "Number of common reviewers = ", len(common_reviewers)
-    # print correlation_coefficient
     place_reviewers.append(len(common_reviewers))
     if math.isnan(correlation_coefficient) == True:
       place_array.append(0)
