@@ -1,3 +1,6 @@
+<% if session[:modal] == true %>
+  <%= render_partial 'layouts/modal.html.erb'%>
+<% end %>
 <div>
   <header>
     <div class="jumbotron header">
