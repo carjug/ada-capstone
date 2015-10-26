@@ -10,7 +10,7 @@
       <tr>
         <td><%= place.name %></td>
         <td>
-        <%= link_to "Rate this Place", new_response_path, html_options= { class: "rate", value: place.name } %>
+        <%= link_to "Rate this Place", new_response_path, html_options = { class: "rate", data: {id: place.id, value: place.name } }%>
         </td>
       </tr>
     <% end %>
@@ -25,16 +25,17 @@
     var sibs = link.siblings();
     var full_path = "/responses";
     var place = link.data("value");
-    var parents = link.parents();
+    var place_id = link.data("id");
     var response_modal = $("#inner-response-modal");
 
     $('.modal-header').text(place);
 
-
+    console.log(place);
+    console.log(place_id);
     console.log(full_path);
     response_modal.modal();
     $('form').attr("action", full_path);
-
+    $('#place_id').attr("value", place_id);
   });
 
 </script>
@@ -60,6 +61,8 @@
           <%= label_tag(:response, "5") %>
           <%= radio_button_tag(:response, "5") %>
           <%= hidden_field_tag(:question_id, 28) %>
+          <%= hidden_field_tag(:place_id,) %>
+
         </div>
         <div class="modal-footer">
           <%= submit_tag "Submit", class: "btn btn-primary" %>
