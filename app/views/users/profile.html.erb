@@ -1,26 +1,27 @@
-<div class="col-md-3">
-  <h1>profile</h1>
-  <h5><%= link_to "rate more places", new_response_path, class: "btn btn-primary" %></h5>
-  <h5>Itineraries (link eventually)</h5>
+<div class="jumbotron profile-header">
+<h5 class="pull-right">Itineraries (link eventually)</h5>
+
+</div>
+<div class="col-lg-6 col-lg-offset-3">
+  <table class="table">
+    <th>Places I've Rated</th>
+    <th>My Rating</th>
+    <% @my_places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <td><%= place.place_rating(current_user) %></td>
+        <td>
+        </td>
+        <td>
+          <%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
-<table class="table">
-  <th>Places I've Rated</th>
-  <th>My Rating</th>
-  <% @my_places.each do |place| %>
-    <tr>
-      <td><%= place.name %></td>
-      <td><%= place.place_rating(current_user) %></td>
-      <td>
-      </td>
-      <td>
-        <%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } %>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-  <% end %>
-</table>
 
 <script type="text/javascript">
   $('.change').on('click', function(event) {
@@ -53,20 +54,20 @@
     </div>
       <div class="modal-body">
         <ul class="errors"></ul>
-      </div>
-      <%= form_tag("/", method: :patch) do %>
-        <div class="form-group">
-          <%= label_tag(:response, "1") %>
-          <%= radio_button_tag(:response, "1") %>
-          <%= label_tag(:response, "2") %>
-          <%= radio_button_tag(:response, "2") %>
-          <%= label_tag(:response, "3") %>
-          <%= radio_button_tag(:response, "3") %>
-          <%= label_tag(:response, "4") %>
-          <%= radio_button_tag(:response, "4") %>
-          <%= label_tag(:response, "5") %>
-          <%= radio_button_tag(:response, "5") %>
-          <%= hidden_field_tag(:question_id, 28) %>
+        <%= form_tag("/", method: :patch) do %>
+          <div class="form-group">
+            <%= label_tag(:response, "1") %>
+            <%= radio_button_tag(:response, "1") %>
+            <%= label_tag(:response, "2") %>
+            <%= radio_button_tag(:response, "2") %>
+            <%= label_tag(:response, "3") %>
+            <%= radio_button_tag(:response, "3") %>
+            <%= label_tag(:response, "4") %>
+            <%= radio_button_tag(:response, "4") %>
+            <%= label_tag(:response, "5") %>
+            <%= radio_button_tag(:response, "5") %>
+            <%= hidden_field_tag(:question_id, 28) %>
+          </div>
         </div>
         <div class="modal-footer">
           <%= submit_tag "Submit", class: "btn btn-primary" %>

@@ -145,6 +145,7 @@ response,question,question_id,place_id,user_id,cat_or_ord
 5,Overall,28,30,13,ordinal
 5,Overall,28,30,15,ordinal
 1,Overall,28,30,19,ordinal
+5,Overall,28,41,23,ordinal
 1,Overall,20,3,1,ordinal
 3,Overall,20,3,4,ordinal
 3,Overall,20,3,5,ordinal
@@ -280,7 +281,10 @@ response,question,question_id,place_id,user_id,cat_or_ord
 5,Overall,20,16,19,ordinal
 5,Overall,28,102,23,ordinal
 3,Overall,28,121,23,ordinal
+4,Overall,28,182,23,ordinal
 5,Overall,28,210,23,ordinal
+4,Overall,28,297,23,ordinal
+4,Overall,28,371,23,ordinal
 3,Overall,20,2,1,ordinal
 2,Overall,20,2,2,ordinal
 3,Overall,20,2,3,ordinal

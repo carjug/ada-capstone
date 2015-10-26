@@ -49,22 +49,21 @@
     </div>
       <div class="modal-body">
         <ul class="errors"></ul>
-      </div>
-      <%= form_tag("/", method: :post) do %>
-        <div class="form-group">
-          <%= label_tag(:response, "1") %>
-          <%= radio_button_tag(:response, "1") %>
-          <%= label_tag(:response, "2") %>
-          <%= radio_button_tag(:response, "2") %>
-          <%= label_tag(:response, "3") %>
-          <%= radio_button_tag(:response, "3") %>
-          <%= label_tag(:response, "4") %>
-          <%= radio_button_tag(:response, "4") %>
-          <%= label_tag(:response, "5") %>
-          <%= radio_button_tag(:response, "5") %>
-          <%= hidden_field_tag(:question_id, 28) %>
-          <%= hidden_field_tag(:place_id,) %>
-
+        <%= form_tag("/", method: :post) do %>
+          <div class="form-group">
+            <%= label_tag(:response, "1") %>
+            <%= radio_button_tag(:response, "1") %>
+            <%= label_tag(:response, "2") %>
+            <%= radio_button_tag(:response, "2") %>
+            <%= label_tag(:response, "3") %>
+            <%= radio_button_tag(:response, "3") %>
+            <%= label_tag(:response, "4") %>
+            <%= radio_button_tag(:response, "4") %>
+            <%= label_tag(:response, "5") %>
+            <%= radio_button_tag(:response, "5") %>
+            <%= hidden_field_tag(:question_id, 28) %>
+            <%= hidden_field_tag(:place_id,) %>
+          </div>
         </div>
         <div class="modal-footer">
           <%= submit_tag "Submit", class: "btn btn-primary" %>

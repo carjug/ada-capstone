@@ -80,6 +80,12 @@
   width: 30rem;
 }
 
+.profile-header {
+  height: 60rem;
+  margin-top: -21rem;
+  background-image: url("greece.jpeg");
+  background-size: 160rem 83rem;
+}
 
 .table {
   margin: 0 auto;
@@ -88,6 +94,18 @@
 
 .table-header {
   text-align: center;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-body {
+  margin: 0 auto;
+}
+
+.form-group {
+  margin: 0 auto;
 }
 
 .form {
@@ -99,7 +117,6 @@
   height: 100%;
   width: 20rem;
   float: left;
-  background-image: url("van.jpeg");
 }
 
 .user-previews {
