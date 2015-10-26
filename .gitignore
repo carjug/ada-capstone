@@ -17,3 +17,4 @@ slc_restaurants.csv
 coverage/*
 db/user_seed_data.csv
 db/questions_seed_data.csv
+credentials.csv
