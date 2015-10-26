@@ -26,7 +26,9 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @my_places = Place.places_user_has_rated(@current_user)
+    my_places = Place.places_user_has_rated(@current_user)
+
+    @my_places = my_places.sort_by { |place| place.name }
   end
 
   private

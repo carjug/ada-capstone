@@ -14,7 +14,9 @@ class ResponsesController < ApplicationController
     response.place_id    = params[:place_id]
     response.response    = params[:response]
     response.user_id     = @current_user.id
-    response.save!
+    unless response.save!
+      raise
+    end
 
     redirect_to new_response_path
   end

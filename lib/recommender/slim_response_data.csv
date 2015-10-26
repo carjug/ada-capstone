@@ -87,6 +87,7 @@ response,question,question_id,place_id,user_id,cat_or_ord
 1,Overall,28,24,17,ordinal
 3,Overall,28,24,18,ordinal
 5,Overall,28,24,22,ordinal
+5,Overall,28,24,23,ordinal
 4,Overall,28,25,1,ordinal
 3,Overall,28,25,3,ordinal
 5,Overall,28,25,4,ordinal
@@ -145,6 +146,8 @@ response,question,question_id,place_id,user_id,cat_or_ord
 5,Overall,28,30,13,ordinal
 5,Overall,28,30,15,ordinal
 1,Overall,28,30,19,ordinal
+5,Overall,28,38,23,ordinal
+5,Overall,28,38,23,ordinal
 5,Overall,28,41,23,ordinal
 1,Overall,20,3,1,ordinal
 3,Overall,20,3,4,ordinal
@@ -196,6 +199,7 @@ response,question,question_id,place_id,user_id,cat_or_ord
 1,Overall,20,8,15,ordinal
 3,Overall,20,8,17,ordinal
 1,Overall,20,8,18,ordinal
+5,Overall,28,8,23,ordinal
 4,Overall,20,9,1,ordinal
 5,Overall,20,9,2,ordinal
 5,Overall,20,9,4,ordinal
@@ -280,11 +284,17 @@ response,question,question_id,place_id,user_id,cat_or_ord
 1,Overall,20,16,17,ordinal
 5,Overall,20,16,19,ordinal
 5,Overall,28,102,23,ordinal
+5,Overall,28,117,23,ordinal
 3,Overall,28,121,23,ordinal
 4,Overall,28,182,23,ordinal
 5,Overall,28,210,23,ordinal
+3,Overall,28,293,23,ordinal
 4,Overall,28,297,23,ordinal
+4,Overall,28,304,23,ordinal
+5,Overall,28,358,23,ordinal
 4,Overall,28,371,23,ordinal
+5,Overall,28,401,23,ordinal
+5,Overall,28,430,23,ordinal
 3,Overall,20,2,1,ordinal
 2,Overall,20,2,2,ordinal
 3,Overall,20,2,3,ordinal
@@ -304,3 +314,4 @@ response,question,question_id,place_id,user_id,cat_or_ord
 2,Overall,20,5,13,ordinal
 3,Overall,20,5,16,ordinal
 2,Overall,20,5,19,ordinal
+5,Overall,28,459,23,ordinal
