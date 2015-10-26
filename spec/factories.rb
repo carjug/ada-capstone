@@ -1,38 +1,37 @@
 FactoryGirl.define do
 
-  factory :rating do
-
-  end
-
-
-  factory :axis do
+  factory :user_recommendation do
+    user_id 1
+    place_id 1
+    score 1
+    rank 1
 
   end
 
   factory :place_type do
-
-
+    description "MyString"
   end
 
-  factory :answer do
-    id 6
-    answer "An answer"
-    question_id 3
+  factory :response do
+    response "My Response"
+    question_id 1
+    user_id 1
+    place_id 1
   end
 
   factory :question do
-    id 3
-    question "A Question?"
-  end
-
-  factory :culture do
-    id 3
-    title "A Culture"
-    description "A description"
+    option1 "MyString"
+    option2 "MyString"
+    option3 "MyString"
+    option4 "MyString"
+    option5 "MyString"
+    place_type_id 1
+    cat_or_ord "MyString"
   end
 
   factory :user do
     id 1
+    email "An email@com"
     username "A User"
     password "sjkslhjshj"
     password_confirmation "sjkslhjshj"
@@ -60,12 +59,14 @@ FactoryGirl.define do
     id 3
     name "A Place"
     city_id 1
+    place_type_id 1
   end
 
   factory :place1, class: Place do
     id 4
     name "Another Place"
     city_id 1
+    place_type_id 1
   end
 
   factory :category1, class: Category do

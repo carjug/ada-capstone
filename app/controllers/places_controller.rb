@@ -1,37 +1,37 @@
 class PlacesController < ApplicationController
+  before_action :current_user, :authorize
+
+  GOOGLE_URI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+  GOOGLE_KEY = ENV["GOOGLE_KEY"]
+
+  def new
+    @place = Place.new
+    @place_types = PlaceType.where('id > 1')
+    @response = Response.new
+  end
+
+  def search
+    city     = City.find_by(name: params[:city][:city])
+    response = call_google(city)
+
+    @other_places       = create_places(response["results"])
+    @recommended_places = @current_user.user_recommendations
+  end
 
   def create
-    place = Place.new(place_params)
+    city          = City.find_by(name: params[:place][:city])
+    place         = Place.new(place_params)
+    place.city_id = city.id
+    place.save!
 
-    if place.save
-      render json: place.as_json, status: 200
-    else
-      render json: { message: "Place could not be saved" }
-    end
-  end
+    response             = Response.new
+    response.response    = params[:response]
+    response.place_id    = place.id
+    response.user_id     = @current_user.id
+    response.question_id = params[:question_id]
+    response.save!
 
-  def update
-    place = Place.find(params[:id])
-
-    place.update(name: params[:name])
-
-    categories_update(place) # method call to associate categories
-
-    if place.save
-      render json: place.as_json, status: 200
-    else
-      render json: { message: "Place updates could not be saved" }
-    end
-  end
-
-# This does not yet consider a person's preferences
-  def find_by_city
-    places = Place.where(city_id: params[:id])
-    if places != nil
-      render json: places.as_json, status: 200
-    else
-      render json: { error: "No places were returned for the given city" }, status: 404
-    end
+    redirect_to home_path
   end
 
   private
@@ -40,14 +40,19 @@ class PlacesController < ApplicationController
     params.require(:place).permit(:name, :city_id, :categories)
   end
 
-  def categories_update(place)
-    new_categories = params[:categories]
-
-    new_categories.each do |cat|
-      if !cat.empty?
-        place.categories << Category.find(cat)
-      end
-    end
+  def response_params
+    params.require(:response).permit(:response, :place_id, :user_id, :question_id)
   end
 
+  def call_google(city)
+    response = HTTParty.get(GOOGLE_URI + "location=" + city.lat_long + "&radius=10000&types=bar|liquor_store|food|cafe|park" + "&key=" + GOOGLE_KEY )
+  end
+
+  def create_places(data)
+    places = data.map do |d|
+      Place.create(
+        name: d["name"]
+      )
+    end
+  end
 end

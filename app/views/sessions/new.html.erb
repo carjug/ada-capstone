@@ -1,0 +1,29 @@
+<div class="form-aside">
+</div>
+<div class="login-form">
+  <h3>Login</h3>
+
+  <% if flash.now[:login_error] %>
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <%= flash.now[:login_error] %>
+    </div>
+    <br>
+  <% end %>
+
+  <%= form_for(:user, url: sessions_path) do |f| %>
+    <div class="form-group">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </div>
+
+    <%= f.submit "Login", class: "btn btn-primary" %>
+  <% end %>
+    <p> or </p>
+    <%= link_to "Register", register_path  %>
+</div>

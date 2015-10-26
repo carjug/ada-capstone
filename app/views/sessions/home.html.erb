@@ -1,0 +1,40 @@
+<% if session[:modal] == true %>
+  <%= render_partial 'layouts/modal.html.erb'%>
+<% end %>
+<div>
+  <header>
+    <div class="jumbotron header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            <h1 id="welcome">Welcome to Niche</h1>
+              <%= form_for(
+                  :city,
+                  url: search_path(:city),
+                  html: {method: "get" } ) do |f| %>
+                <div class="input-group">
+                <%= f.text_field :city, class: "form-control", placeholder: "Where are you going?"%>
+                <span class="input-group-btn">
+                <%= f.submit "Go!", class: "btn btn-default" %>
+                </span>
+              <% end %>
+            </div> <!--input-group -->
+          </div> <!-- col-lg-6 -->
+        </div> <!-- row -->
+      </div>
+    </div>
+  </header>
+
+  <div class="jumbotron user-previews">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+          <h3 id="preview">Where Others Have Been Lately</h3>
+          <div class="previews">
+            <p>this will eventually be a carousel of interesting things...</p>
+          </div>
+         </div> <!-- col-lg-6 -->
+      </div> <!-- row -->
+    </div>
+  </div>
+</div>

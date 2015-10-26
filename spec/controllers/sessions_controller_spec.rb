@@ -7,11 +7,10 @@ RSpec.describe SessionsController, type: :controller do
   describe "login" do
     it "returns success" do
       user.save!
-      post :create, user: {
+      post :create, {
         id:       user.id,
         username: user.username,
         password: user.password,
-        password_confirmation: user.password_confirmation
         }
 
       expect(response.status).to eq 200

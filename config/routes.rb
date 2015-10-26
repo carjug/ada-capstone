@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
-get '/places/:city' => 'places#find_by_city'
-post '/places'      => 'places#create'
-put '/places/:id'   => 'places#update'
+root 'sessions#home'
 
-resource :cities, only: [:create, :update]
+get '/login' => 'sessions#new', as: 'login'
+get '/logout' => 'sessions#logout', as: 'logout'
+get '/search' => 'places#search', as: 'search'
+get '/home'   =>  'sessions#home', as: 'home'
+get '/register' => 'users#new', as: 'register'
+get '/profile' => 'users#profile', as: 'profile'
 
-resource :register, only: [:create], controller: :users
-resource :login, only: [:create], controller: :sessions
+resources :responses, only: [:new, :create, :edit, :update]
+resources :sessions, only: [:create]
+resources :cities, only: [:create, :update]
+resources :users, only: [:create, :update, :destroy]
+resources :places, only: [:new, :create, :update, :show]
 
 end

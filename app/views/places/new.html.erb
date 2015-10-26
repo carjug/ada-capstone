@@ -1,0 +1,40 @@
+<div class="new-place col-lg-8 col-lg-offset-2">
+  <%= form_for @place, url: places_path, html: {class: "form form-responsive"} do |f| %>
+
+    <fieldset>
+      <legend>Place Details</legend>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", :required => true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :city %>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= select_tag 'Place Type', options_for_select(
+          @place_types.collect{ |u| [u.description, u.id] }),
+          options = { prompt: "Select a Place Type" } %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag(:response, "1") %>
+        <%= radio_button_tag(:response, "1") %>
+        <%= label_tag(:response, "2") %>
+        <%= radio_button_tag(:response, "2") %>
+        <%= label_tag(:response, "3") %>
+        <%= radio_button_tag(:response, "3") %>
+        <%= label_tag(:response, "4") %>
+        <%= radio_button_tag(:response, "4") %>
+        <%= label_tag(:response, "5") %>
+        <%= radio_button_tag(:response, "5") %>
+        <%= hidden_field_tag(:question_id, 28) %>
+      </div>
+    </fieldset>
+
+    <%= f.submit "Add Place", class: "btn btn-default" %>
+  <% end %>
+</div>

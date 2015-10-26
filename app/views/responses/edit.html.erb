@@ -1,0 +1,32 @@
+<!-- <%#= render_partial "shared/response_form.html.erb" %> -->
+<!-- <div id="inner-response-modal" class="modal fade">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header"> -->
+      <h3><%= "Edit #{@place_name} Rating" %></h3>
+    <!-- </div> -->
+    <%= form_for @place_response, url: response_path do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:response, "1") %>
+        <%= radio_button_tag(:response, "1") %>
+        <%= label_tag(:response, "2") %>
+        <%= radio_button_tag(:response, "2") %>
+        <%= label_tag(:response, "3") %>
+        <%= radio_button_tag(:response, "3") %>
+        <%= label_tag(:response, "4") %>
+        <%= radio_button_tag(:response, "4") %>
+        <%= label_tag(:response, "5") %>
+        <%= radio_button_tag(:response, "5") %>
+        <%= hidden_field_tag(:question_id, 28) %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary", method: :patch %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+<!--   </div>
+</div>
+</div> -->

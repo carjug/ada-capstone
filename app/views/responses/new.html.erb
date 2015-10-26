@@ -1,0 +1,33 @@
+<!-- this view is for new user responses to places -->
+<div class"col-lg-6 col-lg-offset-3">
+  <h3 class="table-header">Places in your City</h3>
+  <table class="table table-responsive">
+    <tr>
+      <th>Name</th>
+      <th>Your Rating</th>
+    </tr>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <%= form_for @response, url: responses_path do |f| %>
+        <td>
+          <%= f.label(:response, "1") %>
+          <%= f.radio_button(:response, "1") %>
+          <%= f.label(:response, "2") %>
+          <%= f.radio_button(:response, "2") %>
+          <%= f.label(:response, "3") %>
+          <%= f.radio_button(:response, "3") %>
+          <%= f.label(:response, "4") %>
+          <%= f.radio_button(:response, "4") %>
+          <%= f.label(:response, "5") %>
+          <%= f.radio_button(:response, "5") %>
+          <%= hidden_field_tag(:place_id, place.id) %>
+          <%= hidden_field_tag(:question_id, 28) %>
+        </td>
+        <td><%= f.submit "Submit" %></td>
+      </tr>
+
+      <% end %>
+    <% end %>
+  </table>
+</div>

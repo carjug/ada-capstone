@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Niche</title>
+   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lobster">
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="small-header">
+    <a href="/" id="logo" class="pull-left">Niche</a>
+    <h5 class="greet pull-left"></h5>
+    <% if session[:user_id] %>
+      <div class="dropdown-container"></div>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Your things
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+          <li><%= link_to "View your profile", (profile_path) %></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to "Add Places", (new_place_path) %></li>
+          <li><%= link_to "Rate Places", (new_response_path) %></li>
+        </ul>
+      </div>
+    </div>
+      <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
+      <h5 class="pull-left", id="welcome-title"><%= "Welcome, " + current_user.username %></h5>
+    <% end %>
+  </div>
+
+  <%= yield %>
+
+
+</body>
+</html>

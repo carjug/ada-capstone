@@ -1,19 +1,37 @@
 class UsersController < ApplicationController
+  before_action :current_user, :authorize, only: :profile
 
-  # POST /register
+  def new
+    render :register
+  end
+
   def create
-    user = User.new(user_params)
-    if user.save
+    city = City.find_by(name: params[:user][:city])
+
+    user = User.new(
+      email: params[:user][:email],
+      username: params[:user][:username],
+      password: params[:user][:password],
+      password_confirmation: params[:user][:password_confirmation],
+      city_id: city.id)
+    user.save!
+
+    if user.save!
       session[:user_id] = user.id
-      render json: user, status: 200
+      redirect_to new_response_path
     else
-      render json: { error: "Could not create user" }, status: 400
+      flash[:register_error] = "Registration failed, try again."
+      redirect_to login_path
     end
+  end
+
+  def profile
+    @my_places = Place.places_user_has_rated(@current_user)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:username, :password, :password_confirmation, :email, :city_id)
   end
 end

@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.small-header {
+  padding: 0 0 1rem 0;
+}
+
+#logo {
+  text-decoration: none;
+  padding-left: 1.5rem;
+  padding-top: .75rem;
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+}
+#logo:hover {
+  color: rgb(206, 107, 113);
+}
+
+.header {
+  height: 50rem;
+  margin-top: -1rem;
+  background-image: url("blue.jpeg");
+  background-size: 160rem 68rem;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown {
+
+}
+
+#welcome {
+  padding-top: 13rem;
+}
+
+.login {
+  padding-right: 1rem;
+  display: inline-block;
+}
+
+.logout {
+  padding-right: .75rem;
+  display: inline-block;
+}
+
+.places-link {
+  padding-right: 1rem;
+}
+
+#welcome-title {
+  padding-top: .75rem;
+  padding-left: 1.5rem;
+
+}
+
+.register {
+  padding-right: .75rem;
+}
+
+.sign-up-form {
+  margin: 0 auto;
+  width: 30rem;
+}
+
+
+.table {
+  margin: 0 auto;
+  width: 85rem;
+}
+
+.table-header {
+  text-align: center;
+}
+
+.form {
+  margin-top: 10rem;
+}
+
+.form-aside {
+  position: relative;
+  height: 100%;
+  width: 20rem;
+  float: left;
+  background-image: url("van.jpeg");
+}
+
+.user-previews {
+  margin-top: -5rem;
+  height: 60rem;
+  text-align: center;
+  display: block;
+}
