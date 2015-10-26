@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013221618) do
+ActiveRecord::Schema.define(version: 20151023232632) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,12 +46,6 @@ ActiveRecord::Schema.define(version: 20151013221618) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "place_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -103,11 +98,6 @@ ActiveRecord::Schema.define(version: 20151013221618) do
     t.string   "place_name"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
@@ -117,5 +107,4 @@ ActiveRecord::Schema.define(version: 20151013221618) do
     t.integer  "city_id"
   end
 
->>>>>>> 9ae48b46e188e7d1a315db86658b94dcb8de7f71
 end

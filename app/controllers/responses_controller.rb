@@ -3,18 +3,20 @@ class ResponsesController < ApplicationController
   before_action :current_user, :authorize
 
   def new
-    @places = Place.where(city_id: @current_user.city_id)
+    places = Place.where(city_id: @current_user.city_id)
+    @places = places.sample(10)
     @response = Response.new
   end
 
   def create
-    response = Response.new(response_params)
-
-    response.response = params[:response][:response]
-    response.user_id  = @current_user.id
+    response = Response.new
+    response.question_id = params[:question_id]
+    response.place_id    = params[:place_id]
+    response.response    = params[:response]
+    response.user_id     = @current_user.id
     response.save!
 
-    redirect_to home_path
+    redirect_to new_response_path
   end
 
   def edit

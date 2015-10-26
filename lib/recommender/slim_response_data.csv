@@ -86,6 +86,7 @@ response,question,question_id,place_id,user_id,cat_or_ord
 2,Overall,28,24,16,ordinal
 1,Overall,28,24,17,ordinal
 3,Overall,28,24,18,ordinal
+5,Overall,28,24,22,ordinal
 4,Overall,28,25,1,ordinal
 3,Overall,28,25,3,ordinal
 5,Overall,28,25,4,ordinal

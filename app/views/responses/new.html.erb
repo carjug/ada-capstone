@@ -1,6 +1,6 @@
 <!-- this view is for new user responses to places -->
 <div class"col-lg-6 col-lg-offset-3">
-  <h3 class="table-header">Places in your City</h3>
+  <h3 class="table-header">Places in or near your City</h3>
   <table class="table table-responsive">
     <tr>
       <th>Name</th>
@@ -9,25 +9,63 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
-        <%= form_for @response, url: responses_path do |f| %>
         <td>
-          <%= f.label(:response, "1") %>
-          <%= f.radio_button(:response, "1") %>
-          <%= f.label(:response, "2") %>
-          <%= f.radio_button(:response, "2") %>
-          <%= f.label(:response, "3") %>
-          <%= f.radio_button(:response, "3") %>
-          <%= f.label(:response, "4") %>
-          <%= f.radio_button(:response, "4") %>
-          <%= f.label(:response, "5") %>
-          <%= f.radio_button(:response, "5") %>
-          <%= hidden_field_tag(:place_id, place.id) %>
-          <%= hidden_field_tag(:question_id, 28) %>
+        <%= link_to "Rate this Place", new_response_path, html_options= { class: "rate", value: place.name } %>
         </td>
-        <td><%= f.submit "Submit" %></td>
       </tr>
-
-      <% end %>
     <% end %>
   </table>
+</div>
+
+<script type="text/javascript">
+  $('.rate').on('click', function(event) {
+    event.preventDefault();
+
+    var link = $(this);
+    var sibs = link.siblings();
+    var full_path = "/responses";
+    var place = link.data("value");
+    var parents = link.parents();
+    var response_modal = $("#inner-response-modal");
+
+    $('.modal-header').text(place);
+
+
+    console.log(full_path);
+    response_modal.modal();
+    $('form').attr("action", full_path);
+
+  });
+
+</script>
+
+<div id="inner-response-modal" class="modal fade">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+    </div>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+      </div>
+      <%= form_tag("/", method: :post) do %>
+        <div class="form-group">
+          <%= label_tag(:response, "1") %>
+          <%= radio_button_tag(:response, "1") %>
+          <%= label_tag(:response, "2") %>
+          <%= radio_button_tag(:response, "2") %>
+          <%= label_tag(:response, "3") %>
+          <%= radio_button_tag(:response, "3") %>
+          <%= label_tag(:response, "4") %>
+          <%= radio_button_tag(:response, "4") %>
+          <%= label_tag(:response, "5") %>
+          <%= radio_button_tag(:response, "5") %>
+          <%= hidden_field_tag(:question_id, 28) %>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag "Submit", class: "btn btn-primary" %>
+          <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+        </div>
+      <% end %>
+  </div>
+</div>
 </div>
