@@ -5,6 +5,7 @@ FactoryGirl.define do
     place_id 1
     score 1
     rank 1
+
   end
 
   factory :place_type do

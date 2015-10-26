@@ -1,6 +1,7 @@
 require 'csv'
 class Place < ActiveRecord::Base
   # Associations
+  has_many :ratings
   belongs_to :city
   belongs_to :place_type
   has_many :responses
