@@ -34,6 +34,13 @@ class ResponsesController < ApplicationController
     redirect_to profile_path
   end
 
+  def destroy
+    response = Response.find(params[:id])
+    response.destroy
+
+    redirect_to profile_path
+  end
+
   private
 
   def response_params

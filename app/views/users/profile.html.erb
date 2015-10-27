@@ -6,6 +6,9 @@
   <table class="table">
     <th>Places I've Rated</th>
     <th>My Rating</th>
+    <th></th>
+    <th>Change Rating</th>
+    <th>Delete Rating</th>
     <% @my_places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
@@ -15,7 +18,9 @@
         <td>
           <%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } %>
         </td>
-        <td></td>
+        <td>
+          <%= link_to "Delete Rating", response_path(place.response_id(current_user)), method: :delete %>
+        </td>
         <td></td>
       </tr>
     <% end %>

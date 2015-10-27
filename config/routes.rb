@@ -9,7 +9,7 @@ get '/home'   =>  'sessions#home', as: 'home'
 get '/register' => 'users#new', as: 'register'
 get '/profile' => 'users#profile', as: 'profile'
 
-resources :responses, only: [:new, :create, :edit, :update]
+resources :responses, only: [:new, :create, :edit, :update, :destroy]
 resources :sessions, only: [:create]
 resources :cities, only: [:create, :update]
 resources :users, only: [:create, :update, :destroy]
