@@ -1,14 +1,16 @@
-<div class"col-lg-6 col-lg-offset-3">
+<div class"col-lg-6 col-lg-offset-3 search">
   <h3 class="table-header">Recommendations for You</h3>
   <table class="table table-responsive">
     <tr>
       <th>Rank for You</th>
       <th>Name</th>
+      <td>Our Prediction of your Rating</td>
     </tr>
     <% @recommended_places.each do |place| %>
       <tr>
         <td><%= place.rank %></td>
         <td><%= place.place_name %></td>
+        <td><%= place.score %></td>
       </tr>
     <% end %>
   </table>
