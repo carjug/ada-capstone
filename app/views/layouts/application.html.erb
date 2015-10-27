@@ -8,13 +8,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="small-header">
+  <div class="navbar navbar-default small-header">
     <a href="/" id="logo" class="pull-left">Niche</a>
     <h5 class="greet pull-left"></h5>
     <% if session[:user_id] %>
-      <div class="dropdown-container"></div>
       <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button class="btn btn-default dropdown-toggle pull-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Your things
           <span class="caret"></span>
         </button>
@@ -25,12 +24,10 @@
           <li><%= link_to "Rate Places", (new_response_path) %></li>
         </ul>
       </div>
-    </div>
-      <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
-      <h5 class="pull-left", id="welcome-title"><%= "Welcome, " + current_user.username %></h5>
-    <% end %>
+    <h5 class="logout pull-right"><%= link_to "Logout", (logout_path) %></h5>
+    <h5 class="pull-left", id="welcome-title"><%= "Welcome, " + current_user.username %></h5>
   </div>
-
+  <% end %>
   <%= yield %>
 
 

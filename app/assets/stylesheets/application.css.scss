@@ -18,7 +18,10 @@
 @import "bootstrap";
 
 .small-header {
-  padding: 0 0 1rem 0;
+  margin-bottom: -7rem;
+  background: rgba(255,255,255,.5);
+  border-color: none;
+  border-style: hidden;
 }
 
 #logo {
@@ -39,11 +42,14 @@
   background-size: 160rem 68rem;
 }
 
-.dropdown-container {
-  position: relative;
-}
 
 .dropdown {
+  margin-top: 1rem;
+}
+
+#welcome-title {
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
 
 }
 
@@ -58,18 +64,12 @@
 
 .logout {
   padding-right: .75rem;
-  display: inline-block;
 }
 
 .places-link {
   padding-right: 1rem;
 }
 
-#welcome-title {
-  padding-top: .75rem;
-  padding-left: 1.5rem;
-
-}
 
 .register {
   padding-right: .75rem;
