@@ -3,8 +3,10 @@ import pandas as pandas
 import numpy as np
 from IPython import embed
 import math
+import os.path
 
-data = pandas.read_csv("slim_response_data.csv", sep=",", header=0)
+path = os.path.dirname(os.path.abspath(__file__))
+data = pandas.read_csv(os.path.join(path, "slim_response_data.csv"))
 
 users = data.user_id.unique().tolist()
 users =  sorted(users)
@@ -18,13 +20,17 @@ for u in users:
   user_places.sort()
   temp.append(user_places)
 
+print len(temp)
+print len(users)
+
 user_data_matrix = []
 user_avg_ratings = []
 user_ratings_by_place_matrix = []
 
+# this wont work because the range of user_ids is unknown for any given set of users
 for u in users:
   user_array = []
-  user_in_places = temp[u - 1]
+  user_in_places = temp[u-1]
 
   user_ratings = data[data.user_id == u].response
   user_ratings = user_ratings.tolist()
@@ -43,8 +49,10 @@ for u in users:
       user_array.append("nan")
   user_data_matrix.append(user_array)
 
-print user_data_matrix
-print user_avg_ratings
+print "User data matrix ", user_data_matrix
+print "Length of user data matrix ", len(user_data_matrix)
+
+print "User avg ratings ", user_avg_ratings
 
 def get_place_reviews(place, common_reviewers):
   reviewer_places = (data.user_id.isin(common_reviewers)) & (data.place_id==place)
@@ -86,5 +94,5 @@ for i in places:
   common_reviews_matrix.append(place_reviewers)
   place_data_matrix.append(place_array)
 
-print place_data_matrix
-print common_reviews_matrix
+print "Place data matrix ", place_data_matrix
+print "Number of common reviews ", common_reviews_matrix
