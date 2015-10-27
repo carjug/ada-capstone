@@ -286,13 +286,17 @@ response,question,question_id,place_id,user_id,cat_or_ord
 5,Overall,28,102,23,ordinal
 5,Overall,28,117,23,ordinal
 3,Overall,28,121,23,ordinal
+5,Overall,28,128,23,ordinal
 4,Overall,28,182,23,ordinal
 5,Overall,28,210,23,ordinal
+5,Overall,28,216,23,ordinal
+5,Overall,28,247,23,ordinal
 3,Overall,28,293,23,ordinal
 4,Overall,28,297,23,ordinal
 4,Overall,28,304,23,ordinal
 5,Overall,28,358,23,ordinal
 4,Overall,28,371,23,ordinal
+5,Overall,28,391,23,ordinal
 5,Overall,28,401,23,ordinal
 5,Overall,28,430,23,ordinal
 3,Overall,20,2,1,ordinal

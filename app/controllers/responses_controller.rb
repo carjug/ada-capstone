@@ -5,6 +5,7 @@ class ResponsesController < ApplicationController
   def new
     places = Place.where(city_id: @current_user.city_id)
     @places = places.sample(10)
+
     @response = Response.new
   end
 
