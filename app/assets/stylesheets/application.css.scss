@@ -97,23 +97,23 @@
   margin-top: 10rem;
 }
 
+
 #wrapper {
   width: 90%;
-  max-width: 1100px;
-  min-width: 800px;
-  margin: 50px auto;
+  max-width: 100rem;
+  min-width: 75rem;
 }
 
 #columns {
   column-count: 3;
-  column-gap: 15px;
-  column-fill: auto;
+  column-gap: 1rem;
+  column-width: 100rem;
 }
 
 .tile {
   display: inline-block;
   position: relative;
-  top: 0px;
+  vertical-align: top;
   background: #FEFEFE;
   border: 2px solid #FAFAFA;
   box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
@@ -128,10 +128,12 @@
 
 .tile img {
   width: 100%;
-  max-width: 45rem;
   border-bottom: 1px solid #ccc;
+  max-width: 40rem;
+  max-height: 55rem;
   padding-bottom: 15px;
   margin-bottom: 5px;
+  -webkit-filter: saturate(75%) brightness(75%) contrast(100%);
 }
 
 .tile p {
@@ -140,6 +142,17 @@
   margin: 0;
 }
 
+.tile ul {
+  margin: 0;
+  padding: 0;
+}
+
+.tile li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
 
 .table {
   margin: 0 auto;

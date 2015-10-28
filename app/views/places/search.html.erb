@@ -1,17 +1,28 @@
 <h3>Recommendations for You</h3>
-<div id="wrapper">
-  <div id="columns">
+<div id="wrapper" class="col-lg-8 col-lg-offset-2">
+  <div id="columns" class="row">
     <% @response.each do |place| %>
     <div class="tile">
-      <%= image_tag(place[:image_url]) %>
-      <p>
-        <%= place[:rank] %>
-        <%= place[:name] %>
-        <%= link_to (place[:url]), popup: :true do %>
-          <span class="glyphicon glyphicon-link"></span>
-        <% end %>
-        <%= place[:score] %>
+          <%= image_tag(place[:image_url]) %>
+        <p>
+        <ul>
+          <li>
+            Rank: <%= place[:rank] %>
+          </li>
+          <li class="place-name">
+            <%= place[:name] %>
+          </li>
+          <li>
+            View on Yelp <%= link_to (place[:url]), popup: :true do %>
+              <span class="glyphicon glyphicon-link"></span>
+            <% end %>
+          </li>
+          <li>
+            <%= place[:score] %>
+          </li>
+        <ul>
       </p>
+
     </div>
     <% end %>
 </div>
