@@ -68,14 +68,15 @@ class PlacesController < ApplicationController
     final_format = []
     response.each do |place|
       place2 = Place.find_by('name LIKE ?', place[1][:place])
-      rec = current_user.user_recommendations.find_by('place_id = ?', place2.id)
+      rec    = current_user.user_recommendations.find_by('place_id = ?', place2.id)
+      img    = place[0].business.image_url.gsub!('/ms.jpg', '/l.jpg')
       final_format.push(
         {
           rank: rec.rank,
           score: rec.score,
           name: place[0].business.name,
           url: place[0].business.url,
-          image_url: place[0].business.image_url,
+          image_url: img,
           location: place[0].business.location.display_address
         })
     end
