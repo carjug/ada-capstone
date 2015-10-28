@@ -1,0 +1,29 @@
+question,option1,option2,option3,option4,option5,place_type_id,cat_or_ord
+Which option below best describes your political beliefs?,Liberal,Moderate,Conservative,null,null,1,ordinal
+I am excited by theoretical discussions,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I am interested in art,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I have a vivid imagination,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I understand others' emotions,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I am usually the most responsible group member,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I believe authority should be respected,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I am easily persuaded into doing silly things,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I find commitments I make to be important,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+Rules should be followed,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I enjoy chatting with strangers,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+People would describe me as reserved at social gatherings,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I find it easy to keep conversation going,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I am more productive when working alone than with a group,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I tend to avoid crowds,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+"Given the choice, I would prefer to: ","Get acquainted with many people, and become friends with as many as I can manage","Get acquainted with many people, and become friends with some of them","Get acquainted with some people, and become intimate friends with a few of them",null,null,1,categorical
+I enjoy planning my work in great detail,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+I often forget where I've placed things,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+Others would describe me as lively,Agree,Neither agree nor disagree,Disagree,null,null,1,ordinal
+Overall,1,2,3,4,5,2,ordinal
+Food/Drink,1,2,3,4,5,2,ordinal
+Ambience,1,2,3,4,5,2,ordinal
+Customer Service,1,2,3,4,5,2,ordinal
+Overall,1,2,3,4,5,3,ordinal
+Travel Distance,Walking distance,Near-ish,A quick drive,Driving distance,Far away,3,ordinal
+Difficulty,Suitable for children,Beginner,Moderate,Advanced,Expert,3,ordinal
+Crowdedness,Practically deserted,A few others,Moderate traffic,Many groups of others,Very crowded,3,ordinal
+Overall,1,2,3,4,5,4,ordinal
