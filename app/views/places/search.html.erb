@@ -6,7 +6,7 @@
       <th>Name</th>
       <td>Our Prediction of your Rating</td>
     </tr>
-    <% @recommended_places.each do |place| %>
+    <% @places.each do |place| %>
       <tr>
         <td><%= place.rank %></td>
         <td><%= place.place_name %></td>
