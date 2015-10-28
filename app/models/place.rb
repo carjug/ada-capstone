@@ -21,19 +21,6 @@ class Place < ActiveRecord::Base
     joins(:responses).where('user_id = ?', user.id)
   }
 
-  scope :top_places, -> {
-    joins(:ratings).where('ratings.overall >= ?', 4)
-  }
-
-
-  scope :top_places_per_city, -> (city) {
-    top_places.where('city_id = ?', city.id)
-  }
-
-
-  scope :top_places_per_user, -> (user) {
-    top_places.where('ratings.user_id = ?', user.id)
-  }
 
   # Methods
 

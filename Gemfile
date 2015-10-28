@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -13,6 +13,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 
 gem 'httparty'
+
+gem 'yelp'
 
 gem 'omniauth'
 
@@ -28,8 +30,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+
+  gem 'dotenv-rails'
+
   gem 'rspec-rails', '~> 3.0'
 
   gem 'byebug'
@@ -37,8 +42,6 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'factory_girl_rails', '~> 4.0'
-
-  gem 'dotenv-rails'
 
   gem 'better_errors'
 

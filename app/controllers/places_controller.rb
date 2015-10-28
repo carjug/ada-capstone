@@ -1,8 +1,7 @@
+require 'yelp_client'
+
 class PlacesController < ApplicationController
   before_action :current_user, :authorize
-
-  GOOGLE_URI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-  GOOGLE_KEY = ENV["GOOGLE_KEY"]
 
   def new
     @place = Place.new
@@ -12,10 +11,11 @@ class PlacesController < ApplicationController
 
   def search
     city     = City.find_by(name: params[:city][:city])
-    response = call_google(city)
 
-    @other_places       = create_places(response["results"])
-    @recommended_places = @current_user.user_recommendations
+    recs = @current_user.user_recommendations.where('city_id = ?', city.id)
+    places = get_places(recs)
+    response = call_yelp(places, city)
+
   end
 
   def create
@@ -44,15 +44,19 @@ class PlacesController < ApplicationController
     params.require(:response).permit(:response, :place_id, :user_id, :question_id)
   end
 
-  def call_google(city)
-    response = HTTParty.get(GOOGLE_URI + "location=" + city.lat_long + "&radius=10000&types=bar|liquor_store|food|cafe|park" + "&key=" + GOOGLE_KEY )
-  end
-
-  def create_places(data)
-    places = data.map do |d|
-      Place.create(
-        name: d["name"]
-      )
+  def get_places(recommendations)
+    recommendations.map do |rec|
+      Place.find(rec.place_id)
     end
   end
+
+  def call_yelp(collection, city)
+    collection.each do |place|
+      params = {term: place.name,
+                limit: 3}
+      resp = Yelp.client.search(city.name, params)
+      raise
+    end
+  end
+
 end

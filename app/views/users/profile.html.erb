@@ -16,10 +16,14 @@
         <td>
         </td>
         <td>
-          <%= link_to "Change Rating", edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } %>
+          <%= link_to edit_response_path(place.response_id(current_user)), html_options= { class: "change", data: { id: place.response_id(current_user), value: place.name } } do %>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
         </td>
         <td>
-          <%= link_to "Delete Rating", response_path(place.response_id(current_user)), method: :delete %>
+          <%= link_to response_path(place.response_id(current_user)), method: :delete do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
         </td>
         <td></td>
       </tr>
