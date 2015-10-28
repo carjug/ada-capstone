@@ -15,7 +15,6 @@ class PlacesController < ApplicationController
     recs = @current_user.user_recommendations.where('city_id = ?', city.id)
     places = get_places(recs)
     @response = call_yelp(places, city)
-    raise
   end
 
   def create
@@ -54,12 +53,13 @@ class PlacesController < ApplicationController
     all = []
     collection.each do |place|
       params = {term: place.name,
-                limit: 1}
+                limit: 2}
       resp  = Yelp.client.search(city.name, params)
       regex = /biz\/(\S*)/
       biz   = regex.match(resp.businesses[0].url)
+      final_resp = Yelp.client.business(biz[1])
 
-      all << final_resp = Yelp.client.business(biz[1])
+      all.push([final_resp] + [{place: place.name}])
     end
     format_data(all)
   end
@@ -67,16 +67,16 @@ class PlacesController < ApplicationController
   def format_data(response)
     final_format = []
     response.each do |place|
-      place2 = Place.find_by(name: place.business.name)
+      place2 = Place.find_by('name LIKE ?', place[1][:place])
       rec = current_user.user_recommendations.find_by('place_id = ?', place2.id)
       final_format.push(
         {
           rank: rec.rank,
           score: rec.score,
-          name: place.business.name,
-          url: place.business.url,
-          image_url: place.business.image_url,
-          location: place.business.location.display_address
+          name: place[0].business.name,
+          url: place[0].business.url,
+          image_url: place[0].business.image_url,
+          location: place[0].business.location.display_address
         })
     end
     return final_format
