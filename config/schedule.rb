@@ -4,13 +4,15 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 # Background offline jobs
 
+
   set :output, "#{Rails.root}/log/cron.log"
 
-  every 10.minutes do
-    command "/usr/local/bin/python #{Rails.root}/lib/recommender/py_recommender.py"
+  every 2.minutes do
+    py_path = `which python`
+    command "#{py_path} #{Rails.root}/lib/recommender/py_recommender.py"
   end
 
-  every 15.minutes do
+  every 1.minutes do
     runner "Place.write_csv"
     runner "User.create_user_recommendations"
   end
