@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 5.0'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
-gem 'aws-s3'
+gem 'aws-sdk-v1'
 
 gem 'yelp'
 

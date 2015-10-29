@@ -55,4 +55,13 @@ class Place < ActiveRecord::Base
     end
   end
 
+  def self.write_S3
+    file = "#{Rails.root}/lib/recommender/slim_response_data.csv"
+    s3 = AWS::S3.new
+    bucket = s3.buckets['niche-travel']
+    obj = bucket.objects['user_recs']
+
+    obj.write(Pathname.new(file))
+  end
+
 end

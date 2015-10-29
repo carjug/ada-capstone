@@ -1,7 +1,0 @@
-development: &defaults
-  access_key_id: ENV['AWS_ACCESS_KEY_ID']
-  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-  persistent: true
-  bucket: niche-travel
-  max_file_size: 10485760
-  acl: public-read-write
