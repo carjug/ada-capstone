@@ -49,24 +49,15 @@ class PlacesController < ApplicationController
     end
   end
 
-  def client
-    @client ||= Yelp::Client.new(
-    { consumer_key: ENV['YELP_CONSUMER_KEY'],
-      consumer_secret: ENV['YELP_CONSUMER_SECRET'],
-      token: ENV['YELP_TOKEN'],
-      token_secret: ENV['YELP_TOKEN_SECRET']
-    })
-  end
-
   def call_yelp(collection, city)
     all = []
     collection.each do |place|
       params = {term: place.name,
                 limit: 2}
-      resp  = client.search(city.name, params) # method call to client
+      resp  = Yelp.client.search(city.name, params) # method call to client
       regex = /biz\/(\S*)/
       biz   = regex.match(resp.businesses[0].url)
-      final_resp = client.business(biz[1]) # method call to client
+      final_resp = Yelp.client.business(biz[1]) # method call to client
 
       all.push([final_resp] + [{place: place.name}])
     end
@@ -79,6 +70,8 @@ class PlacesController < ApplicationController
       place2 = Place.find_by('name LIKE ?', place[1][:place])
       rec    = current_user.user_recommendations.find_by('place_id = ?', place2.id)
       img    = place[0].business.image_url.gsub!('/ms.jpg', '/l.jpg')
+      img    = img.gsub!('http:', 'https:')
+
       final_format.push(
         {
           rank: rec.rank,
