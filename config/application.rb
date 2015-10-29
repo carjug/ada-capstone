@@ -31,5 +31,12 @@ module AdaCapstone
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Establish a base connection to Amazon S3
+    S3_CREDENTIALS = YAML.load(File.read(File.expand_path(Rails.root.join("config","aws.yml"))))
+    AWS.config(
+        :access_key_id     => S3_CREDENTIALS['access_key_id'],
+        :secret_access_key => S3_CREDENTIALS['secret_access_key'],
+    )
   end
 end
