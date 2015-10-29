@@ -4,9 +4,6 @@
     <% @response.each do |place| %>
     <div class="tile">
         <%= image_tag(place[:image_url]) %>
-        <p>
-          <%#= place[:image_url] %>
-        </p>
         <ul>
           <li class="place-name">
             <%= place[:name] %>
