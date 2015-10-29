@@ -47,4 +47,5 @@ class ResponsesController < ApplicationController
     params.require(:response).permit(:response, :place_id, :user_id, :question_id)
 
   end
+
 end

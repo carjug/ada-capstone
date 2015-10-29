@@ -49,15 +49,24 @@ class PlacesController < ApplicationController
     end
   end
 
+  def client
+    @client ||= Yelp::Client.new(
+    { consumer_key: ENV['YELP_CONSUMER_KEY'],
+      consumer_secret: ENV['YELP_CONSUMER_SECRET'],
+      token: ENV['YELP_TOKEN'],
+      token_secret: ENV['YELP_TOKEN_SECRET']
+    })
+  end
+
   def call_yelp(collection, city)
     all = []
     collection.each do |place|
       params = {term: place.name,
                 limit: 2}
-      resp  = Yelp.client.search(city.name, params)
+      resp  = client.search(city.name, params) # method call to client
       regex = /biz\/(\S*)/
       biz   = regex.match(resp.businesses[0].url)
-      final_resp = Yelp.client.business(biz[1])
+      final_resp = client.business(biz[1]) # method call to client
 
       all.push([final_resp] + [{place: place.name}])
     end
