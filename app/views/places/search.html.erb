@@ -25,6 +25,7 @@
 <script type="text/javascript">
 $('a[popup]').on('click', function(e) {
     e.preventDefault();
-    window.open($(this).attr('href'),'onYelp', 'height=400,width=600');
+    var newWindow = window.open($(this).attr('href'),'onYelp', 'height=900,width=700');
+    newWindow.moveTo(50,50)
 });
 </script>
