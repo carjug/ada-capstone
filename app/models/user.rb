@@ -30,12 +30,8 @@ class User < ActiveRecord::Base
 
   def self.create_user_recs_from_s3
     UserRecommendation.delete_all
+
     s3 = AWS::S3.new
-    bucket_url = s3.buckets['niche-travel'].url
-    print bucket_url
-
-    file_url = "https://s3-us-west-2.amazonaws.com/niche-travel/new_user_recs.csv"
-
     File.open("#{Rails.root}/lib/new_user_recs.csv", 'wb') do |f|
       f.write(s3.buckets['niche-travel'].objects['new_user_recs.csv'].read)
     end

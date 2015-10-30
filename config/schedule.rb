@@ -3,7 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 # Rails whenever environment is currently set to development -- need to change this for production!
 
 # Background offline jobs
-
+# need to add new rails methods to scheduler on heroku
+# booooom botch!
 
   set :output, "#{Rails.root}/log/cron.log"
 
