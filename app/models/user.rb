@@ -28,5 +28,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.create_user_recs_from_s3
+    UserRecommendation.delete_all
+    s3 = AWS::S3.new
+    url = s3.url_for('new_user_recs.csv', 'niche-travel', expires_in: 60)
+    print url
+    # bucket = s3.buckets['niche-travel']
+    # obj = bucket.objects['new_user_recs.csv']
+    # obj =
+      # user_rec = UserRecommendation.new(row.to_hash)
+      # place = Place.find(user_rec.place_id)
+      # user_rec.city_id = place.city_id
+      # user_rec.place_name = place.name
+      # user_rec.save!
+  end
+
 end
 
