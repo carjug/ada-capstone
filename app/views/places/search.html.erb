@@ -8,13 +8,10 @@
           <li class="place-name">
             <%= place[:name] %>
           </li>
-          <li>
+          <li id="yelp">
             View on Yelp <%= link_to (place[:url]), popup: :true do %>
               <span class="glyphicon glyphicon-link"></span>
             <% end %>
-          </li>
-          <li>
-            Our best guessed rating for you: <%= place[:score] %>
           </li>
         </ul>
     </div>

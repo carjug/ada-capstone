@@ -118,8 +118,8 @@
   margin-top: 10rem;
   padding-bottom: 5rem;
   text-align: center;
-  font-size: 6rem;
-  color: gray;
+  font-size: 5.5rem;
+  color: #585B64;
 }
 
 #wrapper {
@@ -169,6 +169,18 @@
 .tile li {
   list-style-type: none;
   padding: 0;
+}
+
+.place-name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #585B64;
+  margin-bottom: 1rem;
+}
+
+#yelp {
+  text-align: center;
 }
 // end search page styles
 
