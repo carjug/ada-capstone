@@ -31,16 +31,22 @@ class User < ActiveRecord::Base
   def self.create_user_recs_from_s3
     UserRecommendation.delete_all
     s3 = AWS::S3.new
-    url = s3.url_for('new_user_recs.csv', 'niche-travel', expires_in: 60)
-    print url
-    # bucket = s3.buckets['niche-travel']
-    # obj = bucket.objects['new_user_recs.csv']
-    # obj =
-      # user_rec = UserRecommendation.new(row.to_hash)
-      # place = Place.find(user_rec.place_id)
-      # user_rec.city_id = place.city_id
-      # user_rec.place_name = place.name
-      # user_rec.save!
+    bucket_url = s3.buckets['niche-travel'].url
+    print bucket_url
+
+    file_url = "https://s3-us-west-2.amazonaws.com/niche-travel/new_user_recs.csv"
+
+    File.open("#{Rails.root}/lib/new_user_recs.csv", 'wb') do |f|
+      f.write(s3.buckets['niche-travel'].objects['new_user_recs.csv'].read)
+    end
+
+    CSV.foreach("#{Rails.root}/lib/new_user_recs.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all }) do |row|
+      user_rec = UserRecommendation.new(row.to_hash)
+      place = Place.find(user_rec.place_id)
+      user_rec.city_id = place.city_id
+      user_rec.place_name = place.name
+      user_rec.save!
+    end
   end
 
 end
